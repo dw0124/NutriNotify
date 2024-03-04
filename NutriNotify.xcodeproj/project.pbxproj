@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */; };
 		BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A972B95BC1F00323771 /* AppDelegate.swift */; };
 		BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */; };
 		BE9B8A9C2B95BC1F00323771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A9B2B95BC1F00323771 /* ViewController.swift */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.release.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.release.xcconfig"; sourceTree = "<group>"; };
+		1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.debug.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.debug.xcconfig"; sourceTree = "<group>"; };
+		36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriNotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9B8A942B95BC1F00323771 /* NutriNotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriNotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9B8A972B95BC1F00323771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37E6C7CA184A7D246828CCF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BE9B8A8B2B95BC1F00323771 = {
 			isa = PBXGroup;
 			children = (
 				BE9B8A962B95BC1F00323771 /* NutriNotify */,
 				BE9B8A952B95BC1F00323771 /* Products */,
+				D30B1CD6FA523EA77C792F25 /* Pods */,
+				37E6C7CA184A7D246828CCF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +73,66 @@
 		BE9B8A962B95BC1F00323771 /* NutriNotify */ = {
 			isa = PBXGroup;
 			children = (
+				BE9B8AAF2B95BCF100323771 /* Models */,
+				BE9B8AB02B95BCF900323771 /* Views */,
+				BE9B8AB12B95BD0300323771 /* ViewModels */,
+				BE9B8AB22B95BD2F00323771 /* Controllers */,
+				BE9B8AAE2B95BCA700323771 /* predefined */,
+			);
+			path = NutriNotify;
+			sourceTree = "<group>";
+		};
+		BE9B8AAE2B95BCA700323771 /* predefined */ = {
+			isa = PBXGroup;
+			children = (
 				BE9B8A972B95BC1F00323771 /* AppDelegate.swift */,
 				BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */,
-				BE9B8A9B2B95BC1F00323771 /* ViewController.swift */,
 				BE9B8A9D2B95BC1F00323771 /* Main.storyboard */,
 				BE9B8AA32B95BC2100323771 /* Assets.xcassets */,
 				BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */,
 				BE9B8AA82B95BC2100323771 /* Info.plist */,
 				BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */,
 			);
-			path = NutriNotify;
+			path = predefined;
+			sourceTree = "<group>";
+		};
+		BE9B8AAF2B95BCF100323771 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BE9B8AB02B95BCF900323771 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE9B8AB12B95BD0300323771 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BE9B8AB22B95BD2F00323771 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE9B8A9B2B95BC1F00323771 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D30B1CD6FA523EA77C792F25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */,
+				1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +142,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE9B8AAB2B95BC2100323771 /* Build configuration list for PBXNativeTarget "NutriNotify" */;
 			buildPhases = (
+				D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */,
 				BE9B8A902B95BC1F00323771 /* Sources */,
 				BE9B8A912B95BC1F00323771 /* Frameworks */,
 				BE9B8A922B95BC1F00323771 /* Resources */,
+				54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +202,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriNotify-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE9B8A902B95BC1F00323771 /* Sources */ = {
@@ -286,6 +395,7 @@
 		};
 		BE9B8AAC2B95BC2100323771 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -293,12 +403,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VQ9DRSPK5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NutriNotify/Info.plist;
+				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,6 +425,7 @@
 		};
 		BE9B8AAD2B95BC2100323771 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -321,12 +433,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VQ9DRSPK5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NutriNotify/Info.plist;
+				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
