@@ -16,13 +16,17 @@ class HomeViewController: UIViewController {
     var tableView = UITableView()
         
     lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "RightBtn", style: .plain, target: self, action:#selector(buttonPressed(_:)))
+        let button = UIBarButtonItem(title: "+", style: .plain, target: self, action:#selector(buttonPressed(_:)))
         return button
     }()
     
     @objc func buttonPressed(_ sender: Any) {
-        let tableViewController = SuppComposeViewController()
-        let navigationController = UINavigationController(rootViewController: tableViewController)
+        let viewModel = SuppComposeViewModel()
+        let composeVC = SuppComposeViewController()
+        
+        composeVC.viewModel = viewModel
+        
+        let navigationController = UINavigationController(rootViewController: composeVC)
         
         self.present(navigationController, animated: true)
     }
@@ -38,6 +42,8 @@ class HomeViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightButton
         
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -68,11 +74,10 @@ extension HomeViewController: UITableViewDataSource {
         }
         
         if let supplement = suppList?[indexPath.row] {
-//            print("#0 configure")
             cell.configure(supplement)
-        } else {
-//            print("#1 configure")
         }
+        
+        cell.layoutIfNeeded()
         
         return cell
     }
@@ -83,17 +88,15 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let suppComposeVC = SuppComposeViewController()
+        let viewModel = SuppComposeViewModel()
         
-        print("-----------------\(suppList?[indexPath.row].name ?? "없음")--------------------------")
+        viewModel.supplement = suppList?[indexPath.row]
+        suppComposeVC.viewModel = viewModel
         
-        if let suppAlertList = suppList?[indexPath.row].suppAlert?.array as? [SuppAlertEntity] {
-            for alert in suppAlertList {
-                print("SuppAlert 시간: \(alert.alertTime), 복용 여부: \(alert.isTaken)")
-                alert.isTaken.toggle()
-                DataManager.shared.saveMainContext()
-            }
-        }
+        let navigationController = UINavigationController(rootViewController: suppComposeVC)
+        
+        self.present(navigationController, animated: true)
     }
-
 }
 

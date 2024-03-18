@@ -21,7 +21,8 @@ class HomeTableViewCell: UITableViewCell {
     
     var collectionViewHeight: CGFloat = 100
     
-    var supplement: SupplementEntity? = nil
+    var supplement: SupplementEntity!
+    var suppAlertList: [SuppAlertEntity] = []
     
     var stackView = UIStackView()
     
@@ -67,64 +68,82 @@ class HomeTableViewCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    // setup UI + Layout
     private func setupCell() {
         selectionStyle = .none
         
+        // CollectionView 설정
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.prefetchDataSource = self
         
+        // stackView 설정
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        stackView.alignment = .fill
+        stackView.layoutMargins = .init(top: 8, left: 0, bottom: 8, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
+        // titleLabel 설정
         titleLabel = {
             let label = UILabel()
             label.tintColor = .black
-            label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
             
             return label
         }()
         
-        stackView.axis = .vertical
-        stackView.spacing = 0
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.isLayoutMarginsRelativeArrangement = true
+        // titleLabel의 leading을 조절하기 위한 빈 뷰
+        let emptyView = UIView()
+        emptyView.backgroundColor = .clear
         
-        stackView.addArrangedSubview(titleLabel)
+        let innerStackView = UIStackView()
+        innerStackView.axis = .horizontal
+        innerStackView.spacing = 8
+        
+        innerStackView.addArrangedSubview(emptyView)
+        innerStackView.addArrangedSubview(titleLabel)
+        
+        stackView.addArrangedSubview(innerStackView)
+        
+        // titleLabel의 leading을 조절 / 뷰의 길이 == titleLabel의 leading
+        emptyView.snp.makeConstraints {
+            $0.width.equalTo(12) // 필요에 따라 조정
+        }
+        
+        // collectionView 제약 설정
         stackView.addArrangedSubview(collectionView)
         
+        // ContentView에 stackView 추가 및 제약 설정
         contentView.addSubview(stackView)
-        
-        stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.width.equalToSuperview()
-        }
         
         collectionView.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            //$0.height.equalTo(100)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(collectionViewHeight).priority(.high)
             $0.centerX.equalToSuperview()
         }
     }
+
     
     
     // configure
     func configure(_ supplement: SupplementEntity) {
         self.supplement = supplement
         
-        titleLabel.text = supplement.name
-        
-        if let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] {
-            self.collectionViewHeight = CGFloat((suppAlerts.count + 2) / 3) * 100
-            print("\(self.supplement?.name) count: \(suppAlerts.count)", self.collectionViewHeight)
+        if let alertList = supplement.suppAlert?.array as? [SuppAlertEntity] {
+            self.suppAlertList = alertList
+            let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
+            self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
+            print("\(self.supplement!.name!)")
+            //print("\( self.supplement.objectID.uriRepresentation().absoluteString)")
         }
         
-        collectionView.snp.makeConstraints {
+        titleLabel.text = supplement.name
+        
+        collectionView.snp.updateConstraints {
             $0.height.equalTo(collectionViewHeight).priority(.high)
         }
         
@@ -135,17 +154,17 @@ class HomeTableViewCell: UITableViewCell {
 // MARK: - UICollectionViewDataSource
 extension HomeTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return supplement?.suppAlert?.count ?? 0
+        return suppAlertList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlertCheckBoxCell.identifier, for: indexPath) as? AlertCheckBoxCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = .green
+        cell.configure(with: suppAlertList[indexPath.item])
         
-        if let suppAlerts = supplement?.suppAlert?.array as? [SuppAlertEntity] {
-            cell.configure(with: suppAlerts)
-        }
+//        if let suppAlerts = supplement?.suppAlert?.array as? [SuppAlertEntity] {
+//            cell.configure(with: suppAlerts[indexPath.item])
+//        }
         
         return cell
     }
@@ -161,5 +180,7 @@ extension HomeTableViewCell: UICollectionViewDataSourcePrefetching {
 
 // MARK: - UICollectionViewDelegate
 extension HomeTableViewCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print()
+    }
 }

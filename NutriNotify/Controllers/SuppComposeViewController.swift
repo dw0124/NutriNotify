@@ -1,16 +1,29 @@
 import UIKit
 import SnapKit
 
-class SuppComposeViewController: UIViewController {
+class SuppComposeViewController: UIViewController, ViewModelBindableType {
 
-    private let viewModel = SuppComposeViewModel()
+    var viewModel: SuppComposeViewModel!
+   
+    func bindViewModel() {
+        // 바인드
+        guard let supplement = viewModel.supplement else { return }
+        
+        nameTextField.text = supplement.name
+        descriptionTextView.text = supplement.desc
+        
+        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else { return }
+        viewModel.alertTimes = suppAlerts.compactMap { $0.alertTime }
+        
+        tableView.reloadData()
+    }
     
     private let tableView = UITableView()
     private let nameTextField = UITextField()
     private let descriptionTextView = UITextView()
 
     @objc func addCell() {
-        viewModel.createSuppAlert()
+        viewModel.alertTimeAppend()
         tableView.reloadData()
     }
     
@@ -86,6 +99,8 @@ class SuppComposeViewController: UIViewController {
         }
         tableView.delegate = self
         tableView.dataSource = self
+        
+        bindViewModel()
     }
 
     
@@ -101,6 +116,7 @@ extension SuppComposeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.identifier) as? DatePickerCell else { return UITableViewCell() }
         
         cell.alertTextLabel.text = "알림\(indexPath.row + 1)"
+        cell.datePicker.date = viewModel.alertTimes[indexPath.row]
         
         cell.didSelectTime = { [weak self] time in
             // 선택한 시간을 ViewModel에 전달

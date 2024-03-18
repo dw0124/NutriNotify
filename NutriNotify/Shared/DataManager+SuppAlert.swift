@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 extension DataManager {
-    func createSuppAlert(for supplement: SupplementEntity, alertTime: Date, isTaken: Bool, completion: (() -> ())? = nil) {
+    func createSuppAlert(for supplement: SupplementEntity, alertTime: Date, isTaken: Bool, completion: ((SuppAlertEntity) -> ())? = nil) {
         mainContext.perform {
             let newSuppAlert = SuppAlertEntity(context: self.mainContext)
             
@@ -20,8 +20,15 @@ extension DataManager {
             
             self.saveMainContext()
             
-            completion?()
+            completion?(newSuppAlert)
         }
+    }
+    
+    func updateSuppAlert(suppAlert: SuppAlertEntity, alertTime: Date, isTaken: Bool = false) {
+        suppAlert.alertTime = alertTime
+        suppAlert.isTaken = isTaken
+        
+        self.saveMainContext()
     }
     
     func delete(entity: SuppAlertEntity) {

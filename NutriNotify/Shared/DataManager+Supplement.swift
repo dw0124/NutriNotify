@@ -9,15 +9,16 @@ import Foundation
 import CoreData
 
 extension DataManager {
-    func createSupplement(name: String, completion: (() -> ())? = nil) {
+    func createSupplement(name: String, desc: String, completion: ((SupplementEntity) -> ())? = nil) {
         mainContext.perform {
             let newSupplemnt = SupplementEntity(context: self.mainContext)
             
             newSupplemnt.name = name
+            newSupplemnt.desc = desc
             
             self.saveMainContext()
             
-            completion?()
+            completion?(newSupplemnt)
         }
     }
     
@@ -41,11 +42,34 @@ extension DataManager {
         return list
     }
     
+    func updateSupplement(supplement: SupplementEntity, name: String, desc: String, completion: (() -> ())? = nil) {
+        supplement.name = name
+        supplement.desc = desc
+        
+        self.saveMainContext()
+        
+        completion?()
+    }
+    
     func deleteSupplement(entity: SupplementEntity) {
         mainContext.perform {
+            print("del supp")
             self.mainContext.delete(entity)
             self.saveMainContext()
         }
+    }
+    
+    // Supplement와 연관된 SuppAlert를 삭제
+    func deleteSuppAlerts(for supplement: SupplementEntity) {
+        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else {
+            return
+        }
+        
+        for suppAlert in suppAlerts {
+            mainContext.delete(suppAlert)
+        }
+        
+        saveMainContext()
     }
     
     func deleteAll(entities: [SupplementEntity]) {
