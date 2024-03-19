@@ -38,6 +38,15 @@ class HomeViewController: UIViewController {
         
         suppList = DataManager.shared.fetchSupplement()
         
+        
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests { requests in
+            print(requests.count)
+            for request in requests {
+                print(request.identifier)
+            }
+        }
+        
         self.navigationItem.title = "홈"
         self.navigationItem.rightBarButtonItem = rightButton
         
@@ -54,7 +63,6 @@ class HomeViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            print(self.suppList?.count)
             self.tableView.reloadData()
         }
         
@@ -97,6 +105,22 @@ extension HomeViewController: UITableViewDelegate {
         let navigationController = UINavigationController(rootViewController: suppComposeVC)
         
         self.present(navigationController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            guard let supplement = suppList?[indexPath.row] else { return }
+            DataManager.shared.deleteSupplement(entity: supplement) // CoreData에서 supplement 삭제
+            
+            suppList?.remove(at: indexPath.row) // tableView에 표시되는 배열에서 삭제
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)  // tableView에서 삭제
+            
+        } else if editingStyle == .insert {
+            
+        }
     }
 }
 

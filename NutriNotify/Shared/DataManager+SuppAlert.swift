@@ -13,6 +13,7 @@ extension DataManager {
         mainContext.perform {
             let newSuppAlert = SuppAlertEntity(context: self.mainContext)
             
+            newSuppAlert.id = UUID()
             newSuppAlert.alertTime = alertTime
             newSuppAlert.isTaken = isTaken
             

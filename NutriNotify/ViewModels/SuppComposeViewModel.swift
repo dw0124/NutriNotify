@@ -38,9 +38,11 @@ class SuppComposeViewModel {
     private func createSuppAlerts(for supplement: SupplementEntity) {
         for alertTime in alertTimes {
             // SuppAlertEntity 생성
-            DataManager.shared.createSuppAlert(for: supplement, alertTime: alertTime, isTaken: false) { [weak self] _ in
+            DataManager.shared.createSuppAlert(for: supplement, alertTime: alertTime, isTaken: false) { [weak self] suppAlert in
                 // local notification 생성
-                self?.scheduleLocalNotification(for: alertTime, with: supplement.name ?? "제목없음")
+
+                let id: String = suppAlert.id?.uuidString ?? "localNotification"
+                self?.scheduleLocalNotification(id: id, for: alertTime, with: supplement.name ?? "제목없음")
             }
         }
     }
@@ -49,9 +51,9 @@ class SuppComposeViewModel {
         alertTimes.append(Date())
     }
  
-    private func scheduleLocalNotification(for date: Date, with message: String) {
+    private func scheduleLocalNotification(id: String , for date: Date, with message: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Supplement Reminder"
+        content.title = "\(message) - Supplement Reminder"
         content.body = "\(message) - Don't forget to take your supplement!"
         
         let calendar = Calendar.current
@@ -59,14 +61,8 @@ class SuppComposeViewModel {
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print("Error scheduling notification: \(error.localizedDescription)")
-            } else {
-                print("Notification scheduled successfully for \(date)")
-            }
-        }
+        UNUserNotificationCenter.current().add(request)
     }
 }

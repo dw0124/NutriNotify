@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UserNotifications
 
 extension DataManager {
     func createSupplement(name: String, desc: String, completion: ((SupplementEntity) -> ())? = nil) {
@@ -55,6 +56,7 @@ extension DataManager {
         mainContext.perform {
             print("del supp")
             self.mainContext.delete(entity)
+            self.deleteSuppAlerts(for: entity)  // supAlert + local notification 삭제
             self.saveMainContext()
         }
     }
@@ -64,9 +66,13 @@ extension DataManager {
         guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else {
             return
         }
+        let center = UNUserNotificationCenter.current()
         
         for suppAlert in suppAlerts {
             mainContext.delete(suppAlert)
+            
+            // local notification 삭제
+            center.removePendingNotificationRequests(withIdentifiers: [suppAlert.id?.uuidString ?? "localNotification"])
         }
         
         saveMainContext()
