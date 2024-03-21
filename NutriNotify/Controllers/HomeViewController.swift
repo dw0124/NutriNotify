@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, ViewModelBindableType {
         
         setNavigationItem()
         setupUI()
-        bindViewModel()
     }
     
 }

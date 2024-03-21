@@ -17,11 +17,11 @@ import SnapKit
 
 class HomeTableViewCell: UITableViewCell {
     
-    static let identifier = "diaryListImageTableViewCell"
+    static let identifier = "HomeTableViewCell"
     
     var collectionViewHeight: CGFloat = 100
     
-    var supplement: SupplementEntity!
+    var supplement: SupplementEntity = SupplementEntity()
     var suppAlertList: [SuppAlertEntity] = []
     
     var stackView = UIStackView()
@@ -137,7 +137,7 @@ class HomeTableViewCell: UITableViewCell {
             self.suppAlertList = alertList
             let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
             self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
-            print("\(self.supplement!.name!)")
+            print("\(self.supplement.name!)")
             //print("\( self.supplement.objectID.uriRepresentation().absoluteString)")
         }
         

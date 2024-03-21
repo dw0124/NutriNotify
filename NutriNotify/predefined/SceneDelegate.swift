@@ -16,10 +16,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let homeViewModel = HomeViewModel()
         var homeViewController = HomeViewController()
-        
+
         homeViewController.bind(viewModel: homeViewModel)
-        
+
         let navigationController = UINavigationController(rootViewController: homeViewController)
+        
+//        // ----- Rx Test -----
+//        let rxtestVM = RxTestViewModel()
+//        var rxtestViewController = RxTestViewController()
+//        rxtestViewController.bind(viewModel: rxtestVM)
+//
+//        let navigationController = UINavigationController(rootViewController: rxtestViewController)
+//        // -------------------
+        
         window?.rootViewController = navigationController
         
         guard let _ = (scene as? UIWindowScene) else { return }

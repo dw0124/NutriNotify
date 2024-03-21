@@ -14,8 +14,6 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         
         setNavigationItem()
         setLayout()
-        
-        bindViewModel()
     }
 
 }
