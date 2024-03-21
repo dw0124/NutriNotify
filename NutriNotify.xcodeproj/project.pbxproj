@@ -21,6 +21,8 @@
 		BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */; };
 		BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */; };
 		BE3E326F2BA8014E00E62FCD /* ViewModelInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326E2BA8014E00E62FCD /* ViewModelInit.swift */; };
+		BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */; };
+		BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32722BAC024600E62FCD /* Date+Extensions.swift */; };
 		BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A972B95BC1F00323771 /* AppDelegate.swift */; };
 		BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */; };
 		BE9B8A9F2B95BC1F00323771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8A9D2B95BC1F00323771 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCheckBoxCell.swift; sourceTree = "<group>"; };
 		BE3E326E2BA8014E00E62FCD /* ViewModelInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelInit.swift; sourceTree = "<group>"; };
+		BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BE3E32722BAC024600E62FCD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BE9B8A942B95BC1F00323771 /* NutriNotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriNotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9B8A972B95BC1F00323771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 				BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */,
 				BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */,
 				BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */,
+				BE3E32722BAC024600E62FCD /* Date+Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */,
+				BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */,
 				BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */,
 				BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */,
 				BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */,
@@ -303,6 +310,7 @@
 				BE3E32392B98509500E62FCD /* DataManager.swift in Sources */,
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
+				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
 				BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */,
 				BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */,
 				BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */,

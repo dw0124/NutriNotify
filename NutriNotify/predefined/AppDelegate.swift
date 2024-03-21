@@ -14,8 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
+        // CoreData Model
         DataManager.shared.setup(modelName: "NutriNotify")
         
         // 알림 권한 요청
@@ -28,6 +27,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         UNUserNotificationCenter.current().delegate = self
+        
+        // 날짜가 변경된지 확인 후 SuppAlertEntity.isTaken 초기화
+        let date = UserDefaults.standard.object(forKey: "lastTime") as? Date    // 마지막으로 실행된 시간
+        UserDefaults.standard.set(Date(), forKey: "lastTime")   // 현재 시간을 저장
+        
+        guard let d = date?.distance(from: Date(), only: .day) else { return true }
+        
+        if d < 0 {
+            let supplement = DataManager.shared.fetchSupplement()
+            supplement.forEach { supp in
+                if let suppAlerts = supp.suppAlert?.array as? [SuppAlertEntity] {
+                    suppAlerts.forEach { $0.isTaken = true }
+                    
+                    DataManager.shared.saveMainContext()
+                }
+            }
+        }
+        
+        
         
         return true
     }
