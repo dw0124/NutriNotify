@@ -9,18 +9,39 @@ import Foundation
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ViewModelBindableType {
     
-    var suppList: [SupplementEntity]?
-    
+    var viewModel: HomeViewModel!
+
     var tableView = UITableView()
-        
-    lazy var rightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "+", style: .plain, target: self, action:#selector(buttonPressed(_:)))
-        return button
-    }()
     
-    @objc func buttonPressed(_ sender: Any) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNavigationItem()
+        setupUI()
+        bindViewModel()
+    }
+    
+}
+
+extension HomeViewController {
+    
+    // ViewModel 바인딩
+    func bindViewModel() {
+        self.tableView.reloadData()
+    }
+    
+    // 네비게이션 아이템 설정
+    func setNavigationItem() {
+        self.navigationItem.title = "홈"
+        
+        let presentComposeVCButton = UIBarButtonItem(title: "+", style: .plain, target: self, action:#selector(presentComposeVC(_:)))
+        self.navigationItem.rightBarButtonItem = presentComposeVCButton
+    }
+    
+    // SuppComposeVC로 이동하는 메소드 - 네비게이션 우측 상단 버튼 메소드
+    @objc func presentComposeVC(_ sender: Any) {
         let viewModel = SuppComposeViewModel()
         let composeVC = SuppComposeViewController()
         
@@ -31,28 +52,13 @@ class HomeViewController: UIViewController {
         self.present(navigationController, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    // UI 설정 및 레이아웃
+    func setupUI() {
         view.backgroundColor = .white
-        
-        suppList = DataManager.shared.fetchSupplement()
-        
-        
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests { requests in
-            print(requests.count)
-            for request in requests {
-                print(request.identifier)
-            }
-        }
-        
-        self.navigationItem.title = "홈"
-        self.navigationItem.rightBarButtonItem = rightButton
         
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -61,11 +67,6 @@ class HomeViewController: UIViewController {
         tableView.snp.makeConstraints {
             $0.leading.top.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.tableView.reloadData()
-        }
-        
     }
     
 }
@@ -73,7 +74,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return suppList?.count ?? 0
+        return viewModel.suppList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,7 +82,7 @@ extension HomeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if let supplement = suppList?[indexPath.row] {
+        if let supplement = viewModel.suppList?[indexPath.row] {
             cell.configure(supplement)
         }
         
@@ -90,17 +91,16 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
     
-    
 }
 
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let suppComposeVC = SuppComposeViewController()
-        let viewModel = SuppComposeViewModel()
+        let suppComposeVM = SuppComposeViewModel()
         
-        viewModel.supplement = suppList?[indexPath.row]
-        suppComposeVC.viewModel = viewModel
+        suppComposeVM.supplement = self.viewModel.suppList?[indexPath.row]
+        suppComposeVC.viewModel = suppComposeVM
         
         let navigationController = UINavigationController(rootViewController: suppComposeVC)
         
@@ -111,10 +111,10 @@ extension HomeViewController: UITableViewDelegate {
         
         if editingStyle == .delete {
             
-            guard let supplement = suppList?[indexPath.row] else { return }
+            guard let supplement = viewModel.suppList?[indexPath.row] else { return }
             DataManager.shared.deleteSupplement(entity: supplement) // CoreData에서 supplement 삭제
             
-            suppList?.remove(at: indexPath.row) // tableView에 표시되는 배열에서 삭제
+            viewModel.suppList?.remove(at: indexPath.row) // tableView에 표시되는 배열에서 삭제
             
             tableView.deleteRows(at: [indexPath], with: .fade)  // tableView에서 삭제
             
@@ -122,5 +122,6 @@ extension HomeViewController: UITableViewDelegate {
             
         }
     }
+    
 }
 

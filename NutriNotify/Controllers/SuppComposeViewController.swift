@@ -4,9 +4,25 @@ import SnapKit
 class SuppComposeViewController: UIViewController, ViewModelBindableType {
 
     var viewModel: SuppComposeViewModel!
-   
+    
+    private let tableView = UITableView()
+    private let nameTextField = UITextField()
+    private let descriptionTextView = UITextView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNavigationItem()
+        setLayout()
+        
+        bindViewModel()
+    }
+
+}
+
+extension SuppComposeViewController {
+    // ViewModel 바인딩
     func bindViewModel() {
-        // 바인드
         guard let supplement = viewModel.supplement else { return }
         
         nameTextField.text = supplement.name
@@ -18,13 +34,12 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         tableView.reloadData()
     }
     
-    private let tableView = UITableView()
-    private let nameTextField = UITextField()
-    private let descriptionTextView = UITextView()
-
-    @objc func addCell() {
-        viewModel.alertTimeAppend()
-        tableView.reloadData()
+    func setNavigationItem() {
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action:#selector(dismissVC))
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action:#selector(saveSupp))
+        
+        self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = saveButton
     }
     
     @objc func saveSupp() {
@@ -39,24 +54,16 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         self.dismiss(animated: true)
     }
     
-    lazy var saveButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "저장", style: .plain, target: self, action:#selector(saveSupp))
-        return button
-    }()
+    @objc func addCell() {
+        viewModel.alertTimeAppend()
+        tableView.reloadData()
+    }
     
-    lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "취소", style: .plain, target: self, action:#selector(dismissVC))
-        return button
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // UI설정 및 레이아웃
+    func setLayout() {
         view.backgroundColor = .white
         
-        self.navigationItem.leftBarButtonItem = cancelButton
-        self.navigationItem.rightBarButtonItem = saveButton
-        
-        // 텍스트 필드를 생성하고 뷰에 추가합니다.
+        // 텍스트 필드
         view.addSubview(nameTextField)
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -66,7 +73,7 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         nameTextField.placeholder = "영양제 이름"
         nameTextField.borderStyle = .roundedRect
 
-        // 텍스트 뷰를 생성하고 뷰에 추가합니다.
+        // 텍스트 뷰
         view.addSubview(descriptionTextView)
         descriptionTextView.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(10)
@@ -78,7 +85,7 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         descriptionTextView.layer.borderWidth = 1.0
         descriptionTextView.layer.cornerRadius = 5
 
-        // "Add Cell" 버튼을 생성하고 뷰에 추가합니다.
+        // 알림 추가 버튼
         let addButton = UIButton(type: .system)
         addButton.setTitle("알림 추가", for: .normal)
         addButton.addTarget(self, action: #selector(addCell), for: .touchUpInside)
@@ -88,7 +95,7 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
             make.top.equalTo(descriptionTextView.snp.bottom).offset(30)
         }
         
-        // 테이블 뷰를 생성하고 뷰에 추가합니다.
+        // 테이블 뷰
         view.addSubview(tableView)
         tableView.register(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.identifier)
         tableView.isEditing = true
@@ -97,15 +104,13 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
-        
-        bindViewModel()
     }
-
     
-
 }
+
 extension SuppComposeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

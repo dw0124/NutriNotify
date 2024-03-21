@@ -20,7 +20,7 @@
 		BE3E32692B9EE69B00E62FCD /* SuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */; };
 		BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */; };
 		BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */; };
-		BE3E326F2BA8014E00E62FCD /* ViewModelInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326E2BA8014E00E62FCD /* ViewModelInit.swift */; };
+		BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */; };
 		BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */; };
 		BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32722BAC024600E62FCD /* Date+Extensions.swift */; };
 		BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A972B95BC1F00323771 /* AppDelegate.swift */; };
@@ -47,7 +47,7 @@
 		BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppComposeViewModel.swift; sourceTree = "<group>"; };
 		BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCheckBoxCell.swift; sourceTree = "<group>"; };
-		BE3E326E2BA8014E00E62FCD /* ViewModelInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelInit.swift; sourceTree = "<group>"; };
+		BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BE3E32722BAC024600E62FCD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BE9B8A942B95BC1F00323771 /* NutriNotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriNotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +170,7 @@
 			children = (
 				BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */,
 				BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */,
-				BE3E326E2BA8014E00E62FCD /* ViewModelInit.swift */,
+				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 				BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */,
 				BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */,
 				BE3E32452B98998C00E62FCD /* Model.swift in Sources */,
-				BE3E326F2BA8014E00E62FCD /* ViewModelInit.swift in Sources */,
+				BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */,
 				BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

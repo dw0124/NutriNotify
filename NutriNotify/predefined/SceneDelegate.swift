@@ -14,7 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let homeViewController = HomeViewController()
+        let homeViewModel = HomeViewModel()
+        var homeViewController = HomeViewController()
+        
+        homeViewController.bind(viewModel: homeViewModel)
         
         let navigationController = UINavigationController(rootViewController: homeViewController)
         window?.rootViewController = navigationController
