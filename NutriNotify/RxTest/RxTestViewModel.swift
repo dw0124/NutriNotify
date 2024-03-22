@@ -7,14 +7,14 @@
 
 import Foundation
 import RxSwift
+import RxDataSources
 
 class RxTestViewModel {
-    
+    var supplements: [SupplementEntity]
     var supplementList: Observable<[SupplementEntity]>
 
     init() {
-        let supplements = DataManager.shared.fetchSupplement()
+        self.supplements = DataManager.shared.fetchSupplement()
         supplementList = Observable.of(supplements)
     }
-    
 }

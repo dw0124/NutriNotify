@@ -16,6 +16,10 @@ class SuppComposeViewModel {
     var description: String = ""
     var alertTimes: [Date] = [Date()]
     
+    init(_ supplement: SupplementEntity? = nil) {
+        self.supplement = supplement
+    }
+    
     func saveSupp(_ completion: @escaping () -> Void) {
         
         // supplement가 있다면 update / 없으면 생성
@@ -40,7 +44,6 @@ class SuppComposeViewModel {
             // SuppAlertEntity 생성
             DataManager.shared.createSuppAlert(for: supplement, alertTime: alertTime, isTaken: false) { [weak self] suppAlert in
                 // local notification 생성
-
                 let id: String = suppAlert.id?.uuidString ?? "localNotification"
                 self?.scheduleLocalNotification(id: id, for: alertTime, with: supplement.name ?? "제목없음")
             }

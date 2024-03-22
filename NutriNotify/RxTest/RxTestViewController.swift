@@ -10,10 +10,12 @@ import SnapKit
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class RxTestViewController: UIViewController, ViewModelBindableType {
     
-    var viewModel: RxTestViewModel!
+    //var viewModel: RxTestViewModel!
+    var viewModel: RxDataSourceViewModel!
     
     var disposeBag = DisposeBag()
     
@@ -31,12 +33,45 @@ class RxTestViewController: UIViewController, ViewModelBindableType {
 extension RxTestViewController {
     // ViewModel 바인딩
     func bindViewModel() {
+        
+        viewModel.sections
+            .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
+            .disposed(by: disposeBag)
+        
+//        Observable.just(viewModel.sections)
+//            .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
+//            .disposed(by: disposeBag)
+        
+//        viewModel.supplementList
+//            .bind(to: tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, element, cell in
+//            cell.configure(element)
+//        }
+//        .disposed(by: disposeBag)
+//
+        tableView.rx.modelSelected(SupplementEntity.self)
+            .subscribe(onNext: { [weak self] supplement in
+                var suppComposeVC = SuppComposeViewController()
+                let suppComposeVM = SuppComposeViewModel(supplement)
 
-        viewModel.supplementList.bind(to:
-                tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, element, cell in
-            cell.configure(element)
-        }
-        .disposed(by: disposeBag)
+                suppComposeVC.bind(viewModel: suppComposeVM)
+
+                let navigationController = UINavigationController(rootViewController: suppComposeVC)
+
+                self?.present(navigationController, animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.viewModel.deleteItem(at: indexPath)
+            })
+            .disposed(by: disposeBag)
+        
+//        tableView.rx.modelDeleted(SupplementEntity.self)
+//            .subscribe(onNext: { [weak self] supplement in
+//
+//            })
+//            .disposed(by: disposeBag)
     }
     
     // UI 설정 및 레이아웃

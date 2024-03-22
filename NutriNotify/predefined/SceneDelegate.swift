@@ -14,20 +14,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let homeViewModel = HomeViewModel()
-        var homeViewController = HomeViewController()
-
-        homeViewController.bind(viewModel: homeViewModel)
-
-        let navigationController = UINavigationController(rootViewController: homeViewController)
-        
-//        // ----- Rx Test -----
-//        let rxtestVM = RxTestViewModel()
-//        var rxtestViewController = RxTestViewController()
-//        rxtestViewController.bind(viewModel: rxtestVM)
+//        let homeViewModel = HomeViewModel()
+//        var homeViewController = HomeViewController()
 //
-//        let navigationController = UINavigationController(rootViewController: rxtestViewController)
-//        // -------------------
+//        homeViewController.bind(viewModel: homeViewModel)
+//
+//        let navigationController = UINavigationController(rootViewController: homeViewController)
+        
+        // ----- Rx Test -----
+        //let rxtestVM = RxTestViewModel()
+        let rxtestVM = RxDataSourceViewModel()
+        var rxtestViewController = RxTestViewController()
+        rxtestViewController.bind(viewModel: rxtestVM)
+
+        let navigationController = UINavigationController(rootViewController: rxtestViewController)
+        // -------------------
         
         window?.rootViewController = navigationController
         

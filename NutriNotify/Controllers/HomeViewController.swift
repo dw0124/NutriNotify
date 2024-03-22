@@ -95,11 +95,12 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let suppComposeVC = SuppComposeViewController()
-        let suppComposeVM = SuppComposeViewModel()
+        let supplement = self.viewModel.suppList?[indexPath.row]
         
-        suppComposeVM.supplement = self.viewModel.suppList?[indexPath.row]
-        suppComposeVC.viewModel = suppComposeVM
+        var suppComposeVC = SuppComposeViewController()
+        let suppComposeVM = SuppComposeViewModel(supplement)
+        
+        suppComposeVC.bind(viewModel: suppComposeVM)
         
         let navigationController = UINavigationController(rootViewController: suppComposeVC)
         

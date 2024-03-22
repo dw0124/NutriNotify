@@ -31,6 +31,7 @@
 		BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */; };
 		BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA32B95BC2100323771 /* Assets.xcassets */; };
 		BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */; };
+		BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		BE9B8AA32B95BC2100323771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE9B8AA62B95BC2100323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE9B8AA82B95BC2100323771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				BE3E32762BAC466B00E62FCD /* RxTestViewModel.swift */,
 				BE3E32742BAC3FCF00E62FCD /* RxTestViewController.swift */,
+				BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */,
 			);
 			path = RxTest;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
+				BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */,
 				BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */,
 				BE3E32772BAC466B00E62FCD /* RxTestViewModel.swift in Sources */,
 				BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */,

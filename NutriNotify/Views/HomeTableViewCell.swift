@@ -137,8 +137,6 @@ class HomeTableViewCell: UITableViewCell {
             self.suppAlertList = alertList
             let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
             self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
-            print("\(self.supplement.name!)")
-            //print("\( self.supplement.objectID.uriRepresentation().absoluteString)")
         }
         
         titleLabel.text = supplement.name
@@ -161,10 +159,6 @@ extension HomeTableViewCell: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlertCheckBoxCell.identifier, for: indexPath) as? AlertCheckBoxCell else { return UICollectionViewCell() }
         
         cell.configure(with: suppAlertList[indexPath.item])
-        
-//        if let suppAlerts = supplement?.suppAlert?.array as? [SuppAlertEntity] {
-//            cell.configure(with: suppAlerts[indexPath.item])
-//        }
         
         return cell
     }
