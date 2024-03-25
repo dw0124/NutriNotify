@@ -14,7 +14,6 @@ import RxDataSources
 
 class RxTestViewController: UIViewController, ViewModelBindableType {
     
-    //var viewModel: RxTestViewModel!
     var viewModel: RxDataSourceViewModel!
     
     var disposeBag = DisposeBag()
@@ -38,20 +37,10 @@ extension RxTestViewController {
             .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: disposeBag)
         
-//        Observable.just(viewModel.sections)
-//            .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
-//            .disposed(by: disposeBag)
-        
-//        viewModel.supplementList
-//            .bind(to: tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, element, cell in
-//            cell.configure(element)
-//        }
-//        .disposed(by: disposeBag)
-//
         tableView.rx.modelSelected(SupplementEntity.self)
             .subscribe(onNext: { [weak self] supplement in
-                var suppComposeVC = SuppComposeViewController()
-                let suppComposeVM = SuppComposeViewModel(supplement)
+                var suppComposeVC = RxSuppComposeViewController()
+                let suppComposeVM = RxSuppComposeViewModel(supplement)
 
                 suppComposeVC.bind(viewModel: suppComposeVM)
 
@@ -99,12 +88,12 @@ extension RxTestViewController {
     
     // SuppComposeVC로 이동하는 메소드 - 네비게이션 우측 상단 버튼 메소드
     @objc func presentComposeVC(_ sender: Any) {
-        let viewModel = SuppComposeViewModel()
-        let composeVC = SuppComposeViewController()
+        var suppComposeVC = RxSuppComposeViewController()
+        let suppComposeVM = RxSuppComposeViewModel()
         
-        composeVC.viewModel = viewModel
+        suppComposeVC.bind(viewModel: suppComposeVM)
         
-        let navigationController = UINavigationController(rootViewController: composeVC)
+        let navigationController = UINavigationController(rootViewController: suppComposeVC)
         
         self.present(navigationController, animated: true)
     }

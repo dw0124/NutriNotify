@@ -1,9 +1,20 @@
+//
+//  RxSuppComposeViewController.swift
+//  NutriNotify
+//
+//  Created by 김두원 on 2024/03/25.
+//
+
 import UIKit
-import SnapKit
+import Foundation
 
-class SuppComposeViewController: UIViewController, ViewModelBindableType {
+import RxSwift
 
-    var viewModel: SuppComposeViewModel!
+class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
+    
+    var disposeBag = DisposeBag()
+    
+    var viewModel: RxSuppComposeViewModel!
     
     private let tableView = UITableView()
     private let nameTextField = UITextField()
@@ -15,23 +26,42 @@ class SuppComposeViewController: UIViewController, ViewModelBindableType {
         setNavigationItem()
         setupUI()
     }
-
-}
-
-extension SuppComposeViewController {
-    // ViewModel 바인딩
+    
     func bindViewModel() {
-        guard let supplement = viewModel.supplement else { return }
+        print(#function)
         
-        nameTextField.text = supplement.name
-        descriptionTextView.text = supplement.desc
+        nameTextField.text = viewModel.name.value
+        descriptionTextView.text = viewModel.description.value
         
-        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else { return }
-        viewModel.alertTimes = suppAlerts.compactMap { $0.alertTime }
+        nameTextField.rx.text.orEmpty
+            .bind(to: viewModel.name)
+            .disposed(by: disposeBag)
         
-        tableView.reloadData()
+        descriptionTextView.rx.text.orEmpty
+            .bind(to: viewModel.description)
+            .disposed(by: disposeBag)
+        
+        viewModel.alertTimes
+            .bind(to: tableView.rx.items(cellIdentifier: DatePickerCell.identifier, cellType: DatePickerCell.self)) { row, element, cell in
+                cell.alertTextLabel.text = "알림\(row + 1)"
+                cell.datePicker.date = element ?? Date()
+
+                cell.didSelectTime = { [weak self] time in
+                    guard var updateAlertTime = self?.viewModel.alertTimes.value else { return }
+                    updateAlertTime[row] = time
+                    self?.viewModel.alertTimes.accept(updateAlertTime)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] in self?.viewModel.deleteItem(at: $0) })
+            .disposed(by: disposeBag)
     }
     
+}
+
+extension RxSuppComposeViewController {
     func setNavigationItem() {
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action:#selector(dismissVC))
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action:#selector(saveSupp))
@@ -41,10 +71,8 @@ extension SuppComposeViewController {
     }
     
     @objc func saveSupp() {
-        viewModel.name = nameTextField.text ?? "이름없음"
-        viewModel.description = descriptionTextView.text ?? "설명없음"
         viewModel.saveSupp() {
-            self.dismiss(animated: true)
+            self.dismissVC()
         }
     }
     
@@ -82,7 +110,7 @@ extension SuppComposeViewController {
         descriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
         descriptionTextView.layer.borderWidth = 1.0
         descriptionTextView.layer.cornerRadius = 5
-
+        
         // 알림 추가 버튼
         let addButton = UIButton(type: .system)
         addButton.setTitle("알림 추가", for: .normal)
@@ -103,43 +131,23 @@ extension SuppComposeViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-}
-
-extension SuppComposeViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.alertTimes.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.identifier) as? DatePickerCell else { return UITableViewCell() }
-        
-        cell.alertTextLabel.text = "알림\(indexPath.row + 1)"
-        cell.datePicker.date = viewModel.alertTimes[indexPath.row]
-        
-        cell.didSelectTime = { [weak self] time in
-            // 선택한 시간을 ViewModel에 전달
-            self?.viewModel.alertTimes[indexPath.row] = time
-        }
-        
-        return cell
+        //tableView.rx.setDelegate(self)
     }
 }
 
-extension SuppComposeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        viewModel.alertTimes.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        tableView.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64
-    }
-}
-
+//extension RxSuppComposeViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        guard editingStyle == .delete else { return }
+//
+//        var alertTimesValue = viewModel.alertTimes.value
+//        alertTimesValue.remove(at: indexPath.row)
+//        viewModel.alertTimes.accept(alertTimesValue)
+//
+//        tableView.deleteRows(at: [indexPath], with: .automatic)
+//
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 64
+//    }
+//}

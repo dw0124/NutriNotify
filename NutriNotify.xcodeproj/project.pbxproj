@@ -32,6 +32,8 @@
 		BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA32B95BC2100323771 /* Assets.xcassets */; };
 		BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */; };
 		BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */; };
+		BEC96A052BB140E70035805D /* Rx+SuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */; };
+		BEC96A072BB1505D0035805D /* RxSuppComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		BE9B8AA62B95BC2100323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE9B8AA82B95BC2100323771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourceViewModel.swift; sourceTree = "<group>"; };
+		BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+SuppComposeViewModel.swift"; sourceTree = "<group>"; };
+		BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSuppComposeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +95,8 @@
 			children = (
 				BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */,
 				BE3E325A2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift */,
-				BE3E32382B98509500E62FCD /* DataManager.swift */,
 				BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */,
+				BE3E32382B98509500E62FCD /* DataManager.swift */,
 				BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */,
 				BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */,
 				BE3E32722BAC024600E62FCD /* Date+Extensions.swift */,
@@ -185,11 +189,29 @@
 		BEC96A012BAC53270035805D /* RxTest */ = {
 			isa = PBXGroup;
 			children = (
-				BE3E32762BAC466B00E62FCD /* RxTestViewModel.swift */,
-				BE3E32742BAC3FCF00E62FCD /* RxTestViewController.swift */,
-				BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */,
+				BEC96A092BB1506B0035805D /* Controllers */,
+				BEC96A082BB150620035805D /* ViewModels */,
 			);
 			path = RxTest;
+			sourceTree = "<group>";
+		};
+		BEC96A082BB150620035805D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BE3E32762BAC466B00E62FCD /* RxTestViewModel.swift */,
+				BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */,
+				BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BEC96A092BB1506B0035805D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE3E32742BAC3FCF00E62FCD /* RxTestViewController.swift */,
+				BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		D30B1CD6FA523EA77C792F25 /* Pods */ = {
@@ -317,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */,
+				BEC96A072BB1505D0035805D /* RxSuppComposeViewController.swift in Sources */,
 				BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */,
 				BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */,
 				BE3E32752BAC3FCF00E62FCD /* RxTestViewController.swift in Sources */,
@@ -329,6 +352,7 @@
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
+				BEC96A052BB140E70035805D /* Rx+SuppComposeViewModel.swift in Sources */,
 				BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */,
 				BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */,
 				BE3E32772BAC466B00E62FCD /* RxTestViewModel.swift in Sources */,

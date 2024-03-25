@@ -16,21 +16,21 @@ import RxDataSources
 class RxDataSourceViewModel {
     
     var supplements: [SupplementEntity]
-    var sections: BehaviorRelay<[SectionOfCustomData]>
     
-    let dataSource: RxTableViewSectionedReloadDataSource<SectionOfCustomData>
+    var sections: BehaviorRelay<[SectionOfSupplementData]>
+    let dataSource: RxTableViewSectionedReloadDataSource<SectionOfSupplementData>
     
     init() {
         self.supplements = DataManager.shared.fetchSupplement()
-        self.sections = BehaviorRelay<[SectionOfCustomData]>(value: [SectionOfCustomData(header: "First section", items: self.supplements)])
         
-        dataSource = RxTableViewSectionedReloadDataSource<SectionOfCustomData>(
+        self.sections = BehaviorRelay<[SectionOfSupplementData]>(value: [SectionOfSupplementData(header: "First section", items: self.supplements)])
+        
+        dataSource = RxTableViewSectionedReloadDataSource<SectionOfSupplementData>(
           configureCell: { dataSource, tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
             cell.configure(item)
             return cell
         })
-        
     }
 
     // 셀 삭제 메소드
@@ -43,22 +43,22 @@ class RxDataSourceViewModel {
         DataManager.shared.deleteSupplement(entity: items[indexPath.row])
         
         items.remove(at: indexPath.row)
-        sectionsValue[indexPath.section] = SectionOfCustomData(header: sectionsValue[indexPath.section].header, items: items)
+        sectionsValue[indexPath.section] = SectionOfSupplementData(header: sectionsValue[indexPath.section].header, items: items)
         
         sections.accept(sectionsValue)
     }
     
 }
 
-struct SectionOfCustomData {
+struct SectionOfSupplementData {
   var header: String
   var items: [Item]
 }
 
-extension SectionOfCustomData: SectionModelType {
+extension SectionOfSupplementData: SectionModelType {
   typealias Item = SupplementEntity
 
-   init(original: SectionOfCustomData, items: [Item]) {
+   init(original: SectionOfSupplementData, items: [Item]) {
     self = original
     self.items = items
   }
