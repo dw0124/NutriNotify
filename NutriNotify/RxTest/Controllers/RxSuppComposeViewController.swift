@@ -16,6 +16,8 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: RxSuppComposeViewModel!
     
+    var delegate: ComposeVCDelegate!
+    
     private let tableView = UITableView()
     private let nameTextField = UITextField()
     private let descriptionTextView = UITextView()
@@ -28,8 +30,6 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        print(#function)
-        
         nameTextField.text = viewModel.name.value
         descriptionTextView.text = viewModel.description.value
         
@@ -71,9 +71,12 @@ extension RxSuppComposeViewController {
     }
     
     @objc func saveSupp() {
-        viewModel.saveSupp() {
-            self.dismissVC()
-        }
+        viewModel.saveSupp()
+            .subscribe(onNext: {
+                self.delegate.didSaveSupplement($0)
+                self.dismissVC()
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc func dismissVC() {
@@ -131,23 +134,5 @@ extension RxSuppComposeViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        //tableView.rx.setDelegate(self)
     }
 }
-
-//extension RxSuppComposeViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        guard editingStyle == .delete else { return }
-//
-//        var alertTimesValue = viewModel.alertTimes.value
-//        alertTimesValue.remove(at: indexPath.row)
-//        viewModel.alertTimes.accept(alertTimesValue)
-//
-//        tableView.deleteRows(at: [indexPath], with: .automatic)
-//
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 64
-//    }
-//}

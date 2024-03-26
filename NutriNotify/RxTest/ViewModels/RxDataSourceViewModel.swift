@@ -48,6 +48,20 @@ class RxDataSourceViewModel {
         sections.accept(sectionsValue)
     }
     
+    // ComposeVC에서 저장을 했을때 SupplementEntity를 tableView에 추가
+    func addSupplement(_ supplement: SupplementEntity) {
+        
+        print(supplement.suppAlert?.count)
+        
+        var sectionValue = sections.value
+
+        var lastSectionItems = sectionValue.last?.items ?? []
+        lastSectionItems.insert(supplement, at: 0)
+
+        sectionValue[sectionValue.count - 1] = SectionOfSupplementData(header: sectionValue[sectionValue.count - 1].header, items: lastSectionItems)
+
+        sections.accept(sectionValue)
+    }
 }
 
 struct SectionOfSupplementData {

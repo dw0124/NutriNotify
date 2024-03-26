@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // ----- Rx Test -----
         //let rxtestVM = RxTestViewModel()
         let rxtestVM = RxDataSourceViewModel()
-        var rxtestViewController = RxTestViewController()
+        var rxtestViewController = RxHomeViewController()
         rxtestViewController.bind(viewModel: rxtestVM)
 
         let navigationController = UINavigationController(rootViewController: rxtestViewController)

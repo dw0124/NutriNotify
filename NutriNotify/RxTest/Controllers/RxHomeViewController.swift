@@ -12,7 +12,10 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class RxTestViewController: UIViewController, ViewModelBindableType {
+class RxHomeViewController: UIViewController, ViewModelBindableType, ComposeVCDelegate {
+    func didSaveSupplement(_ supplement: SupplementEntity) {
+        viewModel.addSupplement(supplement)
+    }
     
     var viewModel: RxDataSourceViewModel!
     
@@ -29,20 +32,22 @@ class RxTestViewController: UIViewController, ViewModelBindableType {
     
 }
  
-extension RxTestViewController {
+extension RxHomeViewController {
     // ViewModel 바인딩
     func bindViewModel() {
-        
+        // tableView 구성
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: disposeBag)
         
+        // tableView 셀 선택
         tableView.rx.modelSelected(SupplementEntity.self)
             .subscribe(onNext: { [weak self] supplement in
                 var suppComposeVC = RxSuppComposeViewController()
                 let suppComposeVM = RxSuppComposeViewModel(supplement)
 
                 suppComposeVC.bind(viewModel: suppComposeVM)
+                suppComposeVC.delegate = self
 
                 let navigationController = UINavigationController(rootViewController: suppComposeVC)
 
@@ -50,17 +55,12 @@ extension RxTestViewController {
             })
             .disposed(by: disposeBag)
 
+        // tableView 셀 삭제
         tableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] indexPath in
                 self?.viewModel.deleteItem(at: indexPath)
             })
             .disposed(by: disposeBag)
-        
-//        tableView.rx.modelDeleted(SupplementEntity.self)
-//            .subscribe(onNext: { [weak self] supplement in
-//
-//            })
-//            .disposed(by: disposeBag)
     }
     
     // UI 설정 및 레이아웃
@@ -92,10 +92,15 @@ extension RxTestViewController {
         let suppComposeVM = RxSuppComposeViewModel()
         
         suppComposeVC.bind(viewModel: suppComposeVM)
+        suppComposeVC.delegate = self
         
         let navigationController = UINavigationController(rootViewController: suppComposeVC)
         
         self.present(navigationController, animated: true)
     }
     
+}
+
+protocol ComposeVCDelegate: AnyObject {
+    func didSaveSupplement(_ supplement: SupplementEntity)
 }
