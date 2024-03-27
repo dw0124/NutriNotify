@@ -87,3 +87,34 @@ extension DataManager {
         }
     }
 }
+
+import RxSwift
+
+// Rx+DataManager
+extension DataManager {
+    func rxCreateSupplement(name: String, desc: String) -> Observable<SupplementEntity> {
+        return Observable.create { observer in
+            let newSupplemnt = SupplementEntity(context: self.mainContext)
+            newSupplemnt.name = name
+            newSupplemnt.desc = desc
+            
+            self.saveMainContext()
+            
+            observer.onNext(newSupplemnt)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    func rxUpdateSupplement(supplement: SupplementEntity, name: String, desc: String) -> Observable<SupplementEntity> {
+        return Observable.create { observer in
+            supplement.name = name
+            supplement.desc = desc
+            
+            self.saveMainContext()
+            
+            return Disposables.create()
+        }
+    }
+}
