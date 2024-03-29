@@ -22,14 +22,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let navigationController = UINavigationController(rootViewController: homeViewController)
         
         // ----- Rx Test -----
-        //let rxtestVM = RxTestViewModel()
-        let rxtestVM = RxDataSourceViewModel()
+        let supplements = DataManager.shared.fetchSupplement()
+
+        let rxtestVM = RxDataSourceViewModel(supplements: supplements)
         var rxtestViewController = RxHomeViewController()
+        
         rxtestViewController.bind(viewModel: rxtestVM)
 
         let navigationController = UINavigationController(rootViewController: rxtestViewController)
         // -------------------
-        
+
         window?.rootViewController = navigationController
         
         guard let _ = (scene as? UIWindowScene) else { return }

@@ -20,11 +20,11 @@ class RxDataSourceViewModel {
     var sections: BehaviorRelay<[SectionOfSupplementData]>
     let dataSource: RxTableViewSectionedReloadDataSource<SectionOfSupplementData>
     
-    init() {
-        self.supplements = DataManager.shared.fetchSupplement()
+    init(supplements: [SupplementEntity]) {
+        self.supplements = supplements
         
-        self.sections = BehaviorRelay<[SectionOfSupplementData]>(value: [SectionOfSupplementData(header: "First section", items: self.supplements)])
-        
+        self.sections = BehaviorRelay<[SectionOfSupplementData]>(value: [SectionOfSupplementData(header: "First section", items: supplements)])
+
         dataSource = RxTableViewSectionedReloadDataSource<SectionOfSupplementData>(
           configureCell: { dataSource, tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
@@ -50,9 +50,6 @@ class RxDataSourceViewModel {
     
     // ComposeVC에서 저장을 했을때 SupplementEntity를 tableView에 추가
     func addSupplement(_ supplement: SupplementEntity) {
-        
-        print(supplement.suppAlert?.count)
-        
         var sectionValue = sections.value
 
         var lastSectionItems = sectionValue.last?.items ?? []

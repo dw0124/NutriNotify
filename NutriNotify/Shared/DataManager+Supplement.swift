@@ -24,7 +24,7 @@ extension DataManager {
     }
     
     func fetchSupplement() -> [SupplementEntity] {
-        var list = [SupplementEntity]()
+        var list: [SupplementEntity] = []
         
         // 블록이 모두 완료된 다음 리턴
         mainContext.performAndWait {
