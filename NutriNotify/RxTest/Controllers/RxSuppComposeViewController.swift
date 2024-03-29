@@ -27,6 +27,7 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
         
         setNavigationItem()
         setupUI()
+        tapGestureDismissKeyboard()
     }
     
     func bindViewModel() {
@@ -134,5 +135,16 @@ extension RxSuppComposeViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
+    }
+}
+
+extension RxSuppComposeViewController {
+    func tapGestureDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
