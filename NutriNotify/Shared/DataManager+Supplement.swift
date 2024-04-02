@@ -114,6 +114,25 @@ extension DataManager {
             
             self.saveMainContext()
             
+            observer.onNext(supplement)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    // 알림 시간으로 정렬
+    func sortSuppAlerts(_ supplement: SupplementEntity) -> Observable<SupplementEntity> {
+        return Observable.create { observer in
+            let sortByAlertTime = NSSortDescriptor(key: #keyPath(SuppAlertEntity.alertTime), ascending: true)
+            if let sortedByAlert = supplement.suppAlert?.sortedArray(using: [sortByAlertTime]) {
+                supplement.suppAlert = NSOrderedSet(array: sortedByAlert)
+            }
+            self.saveMainContext()
+            
+            observer.onNext(supplement)
+            observer.onCompleted()
+            
             return Disposables.create()
         }
     }

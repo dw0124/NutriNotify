@@ -73,8 +73,8 @@ extension RxSuppComposeViewController {
     
     @objc func saveSupp() {
         viewModel.saveSupp()
-            .subscribe(onNext: {
-                self.delegate.didSaveSupplement($0)
+            .subscribe(onNext: { (supplement, isUpdate) in
+                self.delegate.didSaveSupplement(supplement, isUpdate: isUpdate)
                 self.dismissVC()
             })
             .disposed(by: disposeBag)

@@ -46,20 +46,24 @@ class RxSuppComposeViewModel {
     }
     
     // Supplement를 생성 또는 업데이트하는 메소드
-    func saveSupp() -> Observable<SupplementEntity> {
-        
-        return Observable<SupplementEntity>.create { observer in
+    func saveSupp() -> Observable<(SupplementEntity, Bool)> {
+        return Observable.create { observer in
             
-            guard let nameValue = self.name.value, let descriptionValue = self.description.value else { return Disposables.create() }
+            guard let nameValue = self.name.value, let descriptionValue = self.description.value else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
             
-            // supplementEntity를 생성 또는 업데이트해서 Observable로 저장
-            var supplementObservable: Observable<SupplementEntity>
+            var isUpdate = false
             
             // supplement가 있다면 update / 없으면 생성
+            let supplementObservable: Observable<SupplementEntity>
             if let supplement = self.supplement {
+                isUpdate = true
                 DataManager.shared.deleteSuppAlerts(for: supplement)
                 supplementObservable = DataManager.shared.rxUpdateSupplement(supplement: supplement, name: nameValue, desc: descriptionValue)
             } else {
+                isUpdate = false
                 supplementObservable = DataManager.shared.rxCreateSupplement(name: nameValue, desc: descriptionValue)
             }
             
@@ -67,10 +71,13 @@ class RxSuppComposeViewModel {
             // -> 변경된 supplement를 HomeVC에 전달하기 위함
             let disposable = supplementObservable
                 .flatMap {
-                    self.createSuppAlerts(for: $0)
+                    self.createSuppAlerts(for: $0)  // SuppAlert 생성
                 }
-                .subscribe(onNext: {
-                    observer.onNext($0)
+                .flatMap {
+                    DataManager.shared.sortSuppAlerts($0)   // 알림 시간으로 정렬
+                }
+                .subscribe(onNext: { supplement in
+                    observer.onNext((supplement, isUpdate))
                     observer.onCompleted()
                 })
             
