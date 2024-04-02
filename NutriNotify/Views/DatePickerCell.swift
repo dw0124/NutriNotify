@@ -26,7 +26,7 @@ class DatePickerCell: UITableViewCell {
         datePicker.locale = Locale(identifier: "ko-KR")
         
         //datePicker.subviews.first?.subviews.last?.backgroundColor = .clear // background color for time part
-        datePicker.addTarget(self, action: #selector(didSelectedTime(_:)), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(didSelectedTime(_:)), for: .editingDidEnd)
         return datePicker
     }()
     
