@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */; };
+		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
 		BE3E32452B98998C00E62FCD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32442B98998C00E62FCD /* Model.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
@@ -36,9 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.release.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.release.xcconfig"; sourceTree = "<group>"; };
-		1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.debug.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.debug.xcconfig"; sourceTree = "<group>"; };
-		36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriNotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BE3E32442B98998C00E62FCD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
@@ -66,6 +63,9 @@
 		BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourceViewModel.swift; sourceTree = "<group>"; };
 		BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+SuppComposeViewModel.swift"; sourceTree = "<group>"; };
 		BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSuppComposeViewController.swift; sourceTree = "<group>"; };
+		CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.release.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.release.xcconfig"; sourceTree = "<group>"; };
+		E44251027AF28059549D3995 /* Pods_NutriNotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriNotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.debug.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,21 +73,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */,
+				1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37E6C7CA184A7D246828CCF0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		BE3E32332B98501400E62FCD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +100,7 @@
 				BE9B8A962B95BC1F00323771 /* NutriNotify */,
 				BE9B8A952B95BC1F00323771 /* Products */,
 				D30B1CD6FA523EA77C792F25 /* Pods */,
-				37E6C7CA184A7D246828CCF0 /* Frameworks */,
+				E648DE22127691C65FB1BB01 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,10 +206,18 @@
 		D30B1CD6FA523EA77C792F25 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */,
-				1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */,
+				F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */,
+				CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E648DE22127691C65FB1BB01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E44251027AF28059549D3995 /* Pods_NutriNotify.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,11 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE9B8AAB2B95BC2100323771 /* Build configuration list for PBXNativeTarget "NutriNotify" */;
 			buildPhases = (
-				D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */,
+				45AAC33A0A7D82B12FE90DE6 /* [CP] Check Pods Manifest.lock */,
 				BE9B8A902B95BC1F00323771 /* Sources */,
 				BE9B8A912B95BC1F00323771 /* Frameworks */,
 				BE9B8A922B95BC1F00323771 /* Resources */,
-				54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */,
+				BCCA56C98C18F484E0F7580F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,24 +289,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */ = {
+		45AAC33A0A7D82B12FE90DE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -326,6 +309,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCCA56C98C18F484E0F7580F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -498,7 +498,7 @@
 		};
 		BE9B8AAC2B95BC2100323771 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */;
+			baseConfigurationReference = F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -528,7 +528,7 @@
 		};
 		BE9B8AAD2B95BC2100323771 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */;
+			baseConfigurationReference = CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
