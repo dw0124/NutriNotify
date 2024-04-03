@@ -128,6 +128,7 @@ extension RxSuppComposeViewController {
         // 테이블 뷰
         view.addSubview(tableView)
         tableView.register(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.identifier)
+        tableView.isEditing = true
         tableView.snp.makeConstraints { make in
             make.top.equalTo(addButton.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -140,6 +141,7 @@ extension RxSuppComposeViewController {
 extension RxSuppComposeViewController {
     func tapGestureDismissKeyboard() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
 
