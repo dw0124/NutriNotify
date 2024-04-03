@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // ----- Rx Test -----
         let supplements = DataManager.shared.fetchSupplement()
 
-        let rxtestVM = RxDataSourceViewModel(supplements: supplements)
+        let rxtestVM = RxHomeViewModel(supplements: supplements)
         var rxtestViewController = RxHomeViewController()
         
         rxtestViewController.bind(viewModel: rxtestVM)

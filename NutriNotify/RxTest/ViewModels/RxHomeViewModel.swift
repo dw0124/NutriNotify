@@ -13,7 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class RxDataSourceViewModel {
+class RxHomeViewModel {
     
     var supplements: [SupplementEntity]
     

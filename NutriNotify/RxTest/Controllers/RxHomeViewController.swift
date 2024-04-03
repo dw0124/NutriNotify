@@ -17,7 +17,7 @@ class RxHomeViewController: UIViewController, ViewModelBindableType, ComposeVCDe
         viewModel.addSupplement(supplement, isUpdate: isUpdate)
     }
     
-    var viewModel: RxDataSourceViewModel!
+    var viewModel: RxHomeViewModel!
     
     var disposeBag = DisposeBag()
     
