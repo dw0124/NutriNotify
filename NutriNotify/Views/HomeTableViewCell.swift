@@ -5,13 +5,6 @@
 //  Created by 김두원 on 2024/03/15.
 //
 
-//
-//  FeedTableViewCell.swift
-//  MyDiary
-//
-//  Created by 김두원 on 2023/11/09.
-//
-
 import UIKit
 import SnapKit
 
@@ -27,7 +20,37 @@ class HomeTableViewCell: UITableViewCell {
     
     let labelInset: CGFloat = 24
     
+    var deleteDiaryItemHandelr: (() -> Void)?
+    var editDiaryItemHandelr: (() -> Void)?
+    
     var titleLabel = UILabel()
+    
+    lazy var optionsButton: UIButton = {
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        let edit = UIAction(
+            title: "수정",
+            image: UIImage(systemName: "square.and.pencil"),
+            handler: { [weak self] _ in
+                guard let editDiaryItemHandelr = self?.editDiaryItemHandelr else { return }
+                editDiaryItemHandelr()
+            }
+        )
+        let delete = UIAction(
+            title: "삭제", image: UIImage(systemName: "trash"),
+            attributes: .destructive,
+            handler: { [weak self] _ in
+                guard let deleteDiaryItemHandelr = self?.deleteDiaryItemHandelr else { return }
+                deleteDiaryItemHandelr()
+            }
+        )
+        let buttonMenu = UIMenu(children: [edit, delete])
+        rightButton.menu = buttonMenu
+        rightButton.tintColor = .black
+        rightButton.showsMenuAsPrimaryAction = true
+        return rightButton
+    }()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -59,7 +82,7 @@ class HomeTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundColor = #colorLiteral(red: 0.9239165187, green: 0.9213962555, blue: 0.9468390346, alpha: 1)
+        backgroundColor = .white
         contentView.backgroundColor = .white
     }
     
@@ -92,20 +115,32 @@ class HomeTableViewCell: UITableViewCell {
         }()
         
         // titleLabel의 leading을 조절하기 위한 빈 뷰
-        let emptyView = UIView()
-        emptyView.backgroundColor = .clear
+        let leftEmptyView = UIView()
+        leftEmptyView.backgroundColor = .clear
+        
+        // rightButton의 trailing을 조절하기 위한 빈 뷰
+        let rightEmptyView = UIView()
+        rightEmptyView.backgroundColor = .clear
         
         let innerStackView = UIStackView()
         innerStackView.axis = .horizontal
         innerStackView.spacing = 8
         
-        innerStackView.addArrangedSubview(emptyView)
+        innerStackView.addArrangedSubview(leftEmptyView)
         innerStackView.addArrangedSubview(titleLabel)
+        innerStackView.addArrangedSubview(optionsButton)
+        innerStackView.addArrangedSubview(rightEmptyView)
         
         stackView.addArrangedSubview(innerStackView)
         
         // titleLabel의 leading을 조절 / 뷰의 길이 == titleLabel의 leading
-        emptyView.snp.makeConstraints {
+        leftEmptyView.snp.makeConstraints {
+            $0.width.equalTo(12) // 필요에 따라 조정
+        }
+        
+        
+        // rightButton의 trailing을 조절 / 뷰의 길이 == rightButton의 trailing
+        rightEmptyView.snp.makeConstraints {
             $0.width.equalTo(12) // 필요에 따라 조정
         }
         

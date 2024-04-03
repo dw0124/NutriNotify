@@ -35,23 +35,34 @@ class RxHomeViewController: UIViewController, ViewModelBindableType, ComposeVCDe
 extension RxHomeViewController {
     // ViewModel 바인딩
     func bindViewModel() {
+        
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfSupplementData>(
+            configureCell: { [weak self] dataSource, tableView, indexPath, item in
+                let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
+                
+                // 업데이트 메뉴
+                cell.editDiaryItemHandelr = {
+                    self?.presentComposeVCwithSupplement(item)
+                }
+                
+                // 삭제 메뉴
+                cell.deleteDiaryItemHandelr = {
+                    self?.viewModel.deleteItem(at: indexPath)
+                }
+                
+                cell.configure(item)
+                return cell
+            })
+        
         // tableView 구성
         viewModel.sections
-            .bind(to: tableView.rx.items(dataSource: viewModel.dataSource))
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         // tableView 셀 선택
         tableView.rx.modelSelected(SupplementEntity.self)
             .subscribe(onNext: { [weak self] supplement in
-                var suppComposeVC = RxSuppComposeViewController()
-                let suppComposeVM = RxSuppComposeViewModel(supplement)
-
-                suppComposeVC.bind(viewModel: suppComposeVM)
-                suppComposeVC.delegate = self
-
-                let navigationController = UINavigationController(rootViewController: suppComposeVC)
-
-                self?.present(navigationController, animated: true)
+                self?.presentComposeVCwithSupplement(supplement)
             })
             .disposed(by: disposeBag)
 
@@ -90,6 +101,19 @@ extension RxHomeViewController {
     @objc func presentComposeVC(_ sender: Any) {
         var suppComposeVC = RxSuppComposeViewController()
         let suppComposeVM = RxSuppComposeViewModel()
+        
+        suppComposeVC.bind(viewModel: suppComposeVM)
+        suppComposeVC.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: suppComposeVC)
+        
+        self.present(navigationController, animated: true)
+    }
+    
+    // SuppComposeVC로 이동하는 메소드 - 셀에서 supplement를 받아서 업데이트하는 경우
+    func presentComposeVCwithSupplement(_ supplement: SupplementEntity) {
+        var suppComposeVC = RxSuppComposeViewController()
+        let suppComposeVM = RxSuppComposeViewModel(supplement)
         
         suppComposeVC.bind(viewModel: suppComposeVM)
         suppComposeVC.delegate = self

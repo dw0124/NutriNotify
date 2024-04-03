@@ -18,19 +18,11 @@ class RxHomeViewModel {
     var supplements: [SupplementEntity]
     
     var sections: BehaviorRelay<[SectionOfSupplementData]>
-    let dataSource: RxTableViewSectionedReloadDataSource<SectionOfSupplementData>
     
     init(supplements: [SupplementEntity]) {
         self.supplements = supplements
         
         self.sections = BehaviorRelay<[SectionOfSupplementData]>(value: [SectionOfSupplementData(header: "First section", items: supplements)])
-
-        dataSource = RxTableViewSectionedReloadDataSource<SectionOfSupplementData>(
-          configureCell: { dataSource, tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
-            cell.configure(item)
-            return cell
-        })
     }
 
     // 셀 삭제 메소드
