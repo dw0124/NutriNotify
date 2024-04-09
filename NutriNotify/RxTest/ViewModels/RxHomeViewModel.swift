@@ -13,6 +13,20 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+struct SectionOfSupplementData {
+  var header: String
+  var items: [Item]
+}
+
+extension SectionOfSupplementData: SectionModelType {
+  typealias Item = SupplementEntity
+
+   init(original: SectionOfSupplementData, items: [Item]) {
+    self = original
+    self.items = items
+  }
+}
+
 class RxHomeViewModel {
     
     var supplements: [SupplementEntity]
@@ -46,7 +60,7 @@ class RxHomeViewModel {
 
         var lastSectionItems = sectionValue.last?.items ?? []
         
-//        // create한 경우만 insert
+        // create한 경우만 insert
         if isUpdate == false {
             lastSectionItems.insert(supplement, at: 0)
         }
@@ -55,18 +69,4 @@ class RxHomeViewModel {
 
         sections.accept(sectionValue)
     }
-}
-
-struct SectionOfSupplementData {
-  var header: String
-  var items: [Item]
-}
-
-extension SectionOfSupplementData: SectionModelType {
-  typealias Item = SupplementEntity
-
-   init(original: SectionOfSupplementData, items: [Item]) {
-    self = original
-    self.items = items
-  }
 }
