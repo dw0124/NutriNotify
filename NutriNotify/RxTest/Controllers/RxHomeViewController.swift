@@ -52,7 +52,8 @@ extension RxHomeViewController {
                 
                 cell.configure(item)
                 return cell
-            })
+            }
+        )
         
         // tableView 구성
         viewModel.sections
@@ -93,7 +94,7 @@ extension RxHomeViewController {
     func setNavigationItem() {
         self.navigationItem.title = "홈"
         
-        let presentComposeVCButton = UIBarButtonItem(title: "+", style: .plain, target: self, action:#selector(presentComposeVC(_:)))
+        let presentComposeVCButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action:#selector(presentComposeVC(_:)))
         self.navigationItem.rightBarButtonItem = presentComposeVCButton
     }
     
