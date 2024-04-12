@@ -8,25 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
+		BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2B4AB82BC923A4006A7359 /* ViewController.swift */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
-		BE3E32452B98998C00E62FCD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32442B98998C00E62FCD /* Model.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
 		BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */; };
 		BE3E325E2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E325A2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift */; };
 		BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */; };
-		BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */; };
-		BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */; };
 		BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */; };
-		BE3E32692B9EE69B00E62FCD /* SuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */; };
 		BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */; };
 		BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */; };
 		BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */; };
-		BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */; };
 		BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32722BAC024600E62FCD /* Date+Extensions.swift */; };
 		BE3E32752BAC3FCF00E62FCD /* RxHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */; };
 		BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A972B95BC1F00323771 /* AppDelegate.swift */; };
 		BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */; };
-		BE9B8A9F2B95BC1F00323771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8A9D2B95BC1F00323771 /* Main.storyboard */; };
 		BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */; };
 		BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA32B95BC2100323771 /* Assets.xcassets */; };
 		BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */; };
@@ -36,26 +31,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE2B4AB82BC923A4006A7359 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		BE3E32442B98998C00E62FCD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
 		BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuppAlertEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		BE3E325A2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SupplementEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+SuppAlert.swift"; sourceTree = "<group>"; };
-		BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppComposeViewController.swift; sourceTree = "<group>"; };
 		BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
-		BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppComposeViewModel.swift; sourceTree = "<group>"; };
 		BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCheckBoxCell.swift; sourceTree = "<group>"; };
 		BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
-		BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BE3E32722BAC024600E62FCD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxHomeViewController.swift; sourceTree = "<group>"; };
 		BE9B8A942B95BC1F00323771 /* NutriNotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriNotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9B8A972B95BC1F00323771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE9B8A9E2B95BC1F00323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE9B8AA12B95BC1F00323771 /* NutriNotify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NutriNotify.xcdatamodel; sourceTree = "<group>"; };
 		BE9B8AA32B95BC2100323771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE9B8AA62B95BC2100323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,12 +105,10 @@
 		BE9B8A962B95BC1F00323771 /* NutriNotify */ = {
 			isa = PBXGroup;
 			children = (
-				BEC96A012BAC53270035805D /* RxTest */,
 				BE3E32332B98501400E62FCD /* Shared */,
-				BE9B8AAF2B95BCF100323771 /* Models */,
 				BE9B8AB02B95BCF900323771 /* Views */,
-				BE9B8AB12B95BD0300323771 /* ViewModels */,
-				BE9B8AB22B95BD2F00323771 /* Controllers */,
+				BEC96A082BB150620035805D /* ViewModels */,
+				BEC96A092BB1506B0035805D /* Controllers */,
 				BE9B8AAE2B95BCA700323771 /* predefined */,
 			);
 			path = NutriNotify;
@@ -131,20 +119,11 @@
 			children = (
 				BE9B8A972B95BC1F00323771 /* AppDelegate.swift */,
 				BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */,
-				BE9B8A9D2B95BC1F00323771 /* Main.storyboard */,
 				BE9B8AA32B95BC2100323771 /* Assets.xcassets */,
 				BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */,
 				BE9B8AA82B95BC2100323771 /* Info.plist */,
 			);
 			path = predefined;
-			sourceTree = "<group>";
-		};
-		BE9B8AAF2B95BCF100323771 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32442B98998C00E62FCD /* Model.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		BE9B8AB02B95BCF900323771 /* Views */ = {
@@ -155,34 +134,6 @@
 				BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		BE9B8AB12B95BD0300323771 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */,
-				BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		BE9B8AB22B95BD2F00323771 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */,
-				BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */,
-				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		BEC96A012BAC53270035805D /* RxTest */ = {
-			isa = PBXGroup;
-			children = (
-				BEC96A092BB1506B0035805D /* Controllers */,
-				BEC96A082BB150620035805D /* ViewModels */,
-			);
-			path = RxTest;
 			sourceTree = "<group>";
 		};
 		BEC96A082BB150620035805D /* ViewModels */ = {
@@ -199,6 +150,8 @@
 			children = (
 				BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */,
 				BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */,
+				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
+				BE2B4AB82BC923A4006A7359 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,7 +235,6 @@
 			files = (
 				BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */,
 				BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */,
-				BE9B8A9F2B95BC1F00323771 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,13 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */,
 				BEC96A072BB1505D0035805D /* RxSuppComposeViewController.swift in Sources */,
 				BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */,
 				BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */,
 				BE3E32752BAC3FCF00E62FCD /* RxHomeViewController.swift in Sources */,
 				BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */,
-				BE3E32692B9EE69B00E62FCD /* SuppComposeViewModel.swift in Sources */,
 				BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */,
 				BE3E325E2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift in Sources */,
 				BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */,
@@ -349,12 +299,10 @@
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
+				BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */,
 				BEC96A052BB140E70035805D /* RxSuppComposeViewModel.swift in Sources */,
 				BEC96A032BAD5BB40035805D /* RxHomeViewModel.swift in Sources */,
-				BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */,
-				BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */,
 				BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */,
-				BE3E32452B98998C00E62FCD /* Model.swift in Sources */,
 				BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */,
 				BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */,
 			);
@@ -363,14 +311,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BE9B8A9D2B95BC1F00323771 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE9B8A9E2B95BC1F00323771 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -509,7 +449,6 @@
 				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -539,7 +478,6 @@
 				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

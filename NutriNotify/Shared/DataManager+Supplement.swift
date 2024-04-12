@@ -88,6 +88,7 @@ extension DataManager {
     }
 }
 
+// MARK: - RxSwift
 import RxSwift
 
 // Rx+DataManager
@@ -103,6 +104,29 @@ extension DataManager {
             observer.onNext(newSupplemnt)
             observer.onCompleted()
             
+            return Disposables.create()
+        }
+    }
+    
+    func rxFetchSupplement() -> Observable<[SupplementEntity]> {
+        return Observable.create { observer in
+            
+            var list: [SupplementEntity] = []
+            
+            let request: NSFetchRequest<SupplementEntity> = SupplementEntity.fetchRequest()
+            
+            // 이름순으로 정렬
+            let sortByName = NSSortDescriptor(key: #keyPath(SupplementEntity.name), ascending: true)
+            request.sortDescriptors = [sortByName]
+            
+            do {
+                list = try self.mainContext.fetch(request)
+                observer.onNext(list)
+                observer.onCompleted()
+            } catch {
+                print(error)
+                observer.onError(error)
+            }
             return Disposables.create()
         }
     }

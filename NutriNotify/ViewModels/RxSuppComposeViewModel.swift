@@ -114,7 +114,7 @@ class RxSuppComposeViewModel {
     private func scheduleLocalNotification(id: String , for date: Date, with message: String) {
         let content = UNMutableNotificationContent()
         content.title = "\(message)"
-        content.body = "\(message) - 드셨나요?"
+        content.body = "\(message) - 드셨다면 체크표시 해주세요."
 
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.hour, .minute], from: date)

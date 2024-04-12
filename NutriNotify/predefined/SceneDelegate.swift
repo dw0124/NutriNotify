@@ -13,28 +13,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = (scene as? UIWindowScene) else { return }
         
-//        let homeViewModel = HomeViewModel()
-//        var homeViewController = HomeViewController()
-//
-//        homeViewController.bind(viewModel: homeViewModel)
-//
-//        let navigationController = UINavigationController(rootViewController: homeViewController)
+        let window = UIWindow(windowScene: windowScene)
         
-        // ----- Rx Test -----
+        // ViewModel에 전달하기 위한 supplement
         let supplements = DataManager.shared.fetchSupplement()
-
         let rxtestVM = RxHomeViewModel(supplements: supplements)
+        
         var rxtestViewController = RxHomeViewController()
-        
         rxtestViewController.bind(viewModel: rxtestVM)
-
-        let navigationController = UINavigationController(rootViewController: rxtestViewController)
-        // -------------------
-
-        window?.rootViewController = navigationController
         
-        guard let _ = (scene as? UIWindowScene) else { return }
+        let navigationController = UINavigationController(rootViewController: rxtestViewController)
+        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
+        self.window = window
+        
+//        // RxSwift를 사용한 rootVC 설정
+//        // ViewModel에 전달하기 위한 supplement
+//        DataManager.shared.rxFetchSupplement()
+//            .subscribe(onNext: { supplements in
+//
+//                let rxtestVM = RxHomeViewModel(supplements: supplements)
+//
+//                var rxtestViewController = RxHomeViewController()
+//                rxtestViewController.bind(viewModel: rxtestVM)
+//
+//                let navigationController = UINavigationController(rootViewController: rxtestViewController)
+//
+//                window.rootViewController = navigationController
+//                window.makeKeyAndVisible()
+//
+//                self.window = window
+//            })
+//            .dispose()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
