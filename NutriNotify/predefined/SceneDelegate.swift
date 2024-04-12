@@ -17,19 +17,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        // ViewModel에 전달하기 위한 supplement
-        let supplements = DataManager.shared.fetchSupplement()
-        let rxtestVM = RxHomeViewModel(supplements: supplements)
-        
-        var rxtestViewController = RxHomeViewController()
-        rxtestViewController.bind(viewModel: rxtestVM)
-        
-        let navigationController = UINavigationController(rootViewController: rxtestViewController)
-        
-        window.rootViewController = navigationController
+        window.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window.makeKeyAndVisible()
         
-        self.window = window
+        // ViewModel에 전달하기 위한 supplements
+        // 런치스크린이 보여지는 동안 데이터를 불러옴
+        let supplements = DataManager.shared.fetchSupplement()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let rxtestVM = RxHomeViewModel(supplements: supplements)
+            
+            var rxtestViewController = RxHomeViewController()
+            rxtestViewController.bind(viewModel: rxtestVM)
+            
+            let navigationController = UINavigationController(rootViewController: rxtestViewController)
+            
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            
+            self.window = window
+        }
         
 //        // RxSwift를 사용한 rootVC 설정
 //        // ViewModel에 전달하기 위한 supplement
