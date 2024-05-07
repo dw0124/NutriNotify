@@ -46,6 +46,7 @@ class DatePickerCell: UITableViewCell {
     }()
     
     var didSelectTime: ((Date) -> Void)?
+    var didSelectWeekday: ((Int) -> Void)?
     
     @objc func didSelectedTime(_ sender: UIDatePicker) {
         didSelectTime?(sender.date)
@@ -77,7 +78,7 @@ class DatePickerCell: UITableViewCell {
             button.setTitleColor(.systemGray4, for: .selected)
             button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = .clear
-            button.addTarget(self, action: #selector(dayButtonTapped(_:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(didSelectedWeekday(_:)), for: .touchUpInside)
             
             addSubview(button)
             dayButtons.append(button)
@@ -106,13 +107,21 @@ class DatePickerCell: UITableViewCell {
     }
     
     // 요일 버튼 탭
-    @objc private func dayButtonTapped(_ sender: UIButton) {
+    @objc func didSelectedWeekday(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        if let dayIndex = dayButtons.firstIndex(of: sender), dayIndex < daysOfWeek.count {
-            let selectedDay = daysOfWeek[dayIndex]
-            
-            print("\(selectedDay): \(dayIndex)")
+        guard let dayIndex = dayButtons.firstIndex(of: sender), dayIndex < daysOfWeek.count else { return }
+        
+        didSelectWeekday?(dayIndex)
+    }
+
+    // DatePickerCell에 선택 상태를 업데이트하는 메소드
+    func updateSelectionStates(for weekdays: [Int]?) {
+        guard let weekdays = weekdays else { return }
+        for (index, button) in dayButtons.enumerated() {
+            let isSelected = weekdays[index] == 0
+            button.isSelected = isSelected
         }
     }
+
 }

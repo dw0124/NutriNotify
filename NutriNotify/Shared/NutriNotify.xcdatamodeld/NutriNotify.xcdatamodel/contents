@@ -4,6 +4,7 @@
         <attribute name="alertTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isTaken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="weekday" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
         <relationship name="supplement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Supplement" inverseName="suppAlert" inverseEntity="Supplement"/>
     </entity>
     <entity name="Supplement" representedClassName="SupplementEntity" syncable="YES" codeGenerationType="category">

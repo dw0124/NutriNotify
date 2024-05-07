@@ -21,6 +21,10 @@ class RxSuppComposeViewModel {
     var description: BehaviorRelay<String?> = BehaviorRelay(value: "")
     var alertTimes: BehaviorRelay<[Date?]> = BehaviorRelay(value: [Date()])
     
+    // 요일 배열
+    // local notification에 요일을 선택하여 추가하는 기능 추가할 예정
+    var weekdays: BehaviorRelay<[[Int]?]> = BehaviorRelay(value: [[1,1,1,1,1,1,1]])
+    
     init(_ supplement: SupplementEntity? = nil) {
         guard let supplement = supplement else { return }
         
@@ -32,17 +36,46 @@ class RxSuppComposeViewModel {
         guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else { return }
         let suppAlertTimes = suppAlerts.map { $0.alertTime }
         
+        // 요일 테스트
+        let weekdays = suppAlerts.map { $0.weekday }
+        
+//        let count = suppAlerts.count
+//
+//        let weekdays = Array(repeating: [1,1,1,1,1,1,1], count: count)
+        self.weekdays.accept(weekdays)
+        
         self.alertTimes.accept(suppAlertTimes)
     }
     
+    // 알림 추가
     func alertTimeAppend() {
         alertTimes.accept(alertTimes.value + [Date()])
+        weekdays.accept(weekdays.value + [[1,1,1,1,1,1,1]])
     }
     
+    // 알림 삭제
     func deleteItem(at indexPath: IndexPath) {
         var alertTimesValue = alertTimes.value
         alertTimesValue.remove(at: indexPath.row)
         alertTimes.accept(alertTimesValue)
+        
+        var weekdayValue = weekdays.value
+        weekdayValue.remove(at: indexPath.row)
+        weekdays.accept(weekdayValue)
+        
+        print(alertTimes.value.count, weekdays.value.count)
+    }
+    
+    // 요일 선택
+    func didSelectWeekday(row: Int, index: Int) {
+        var weekdaysValue = weekdays.value
+        let toggle = weekdaysValue[row]?[index] == 1 ? 0 : 1
+        
+        weekdaysValue[row]?[index] = toggle
+        
+        print(weekdaysValue)
+        
+        weekdays.accept(weekdaysValue)
     }
     
     // Supplement를 생성 또는 업데이트하는 메소드
@@ -93,9 +126,10 @@ class RxSuppComposeViewModel {
         return Observable<SupplementEntity>.create { observer in
             for (index,alertTime) in self.alertTimes.value.enumerated() {
                 guard let alertTime = alertTime else { continue } // nil이면 다음 반복으로 건너뜁니다.
+                guard let weekday = self.weekdays.value[index] else { continue }
                 
                 // SuppAlertEntity를 생성합니다.
-                DataManager.shared.createSuppAlert2(for: supplement, alertTime: alertTime, isTaken: false) { [weak self] supp, suppAlert in
+                DataManager.shared.createSuppAlert2(for: supplement, weekday: weekday, alertTime: alertTime, isTaken: false) { [weak self] supp, suppAlert in
                     // 생성된 SuppAlertEntity에 대한 local notification을 예약합니다.
                     let id: String = suppAlert.id?.uuidString ?? "localNotification"
                     self?.scheduleLocalNotification(id: id, for: alertTime, with: supplement.name ?? "제목없음")

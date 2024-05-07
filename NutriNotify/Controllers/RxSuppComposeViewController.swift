@@ -47,10 +47,18 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
                 cell.alertTextLabel.text = "알림\(row + 1)"
                 cell.datePicker.date = element ?? Date()
 
+                cell.updateSelectionStates(for: self.viewModel.weekdays.value[row])
+                
                 cell.didSelectTime = { [weak self] time in
                     guard var updateAlertTime = self?.viewModel.alertTimes.value else { return }
                     updateAlertTime[row] = time
                     self?.viewModel.alertTimes.accept(updateAlertTime)
+                }
+                
+                cell.didSelectWeekday = { [weak self] index in
+                    print(row, index)
+                    
+                    self?.viewModel.didSelectWeekday(row: row, index: index)
                 }
             }
             .disposed(by: disposeBag)
