@@ -4,6 +4,21 @@ import SnapKit
 class DatePickerCell: UITableViewCell {
     static let identifier = "DatePickerCell"
     
+    
+    // 요일 배열
+    let daysOfWeek = ["월", "화", "수", "목", "금", "토", "일"]
+    
+    private let weekdayButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 3
+        stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        return stackView
+    }()
+    
+    private var dayButtons: [UIButton] = []
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -52,19 +67,52 @@ class DatePickerCell: UITableViewCell {
     }
     
     private func setupCell() {
+        
+        // 요일 버튼 생성 및 설정
+        for day in daysOfWeek {
+            let button = UIButton(type: .custom)
+            button.setTitle(day, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+            button.setTitleColor(UIColor.black, for: .normal)
+            button.setTitleColor(.systemGray4, for: .selected)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = .clear
+            button.addTarget(self, action: #selector(dayButtonTapped(_:)), for: .touchUpInside)
+            
+            addSubview(button)
+            dayButtons.append(button)
+        }
+        
         // contentView에 stackView 추가
         contentView.addSubview(stackView)
         
+        dayButtons.forEach {
+            weekdayButtonStackView.addArrangedSubview($0)
+        }
+        
+        stackView.addArrangedSubview(weekdayButtonStackView)
+        
         // alertTextLabel과 datePicker를 stackView에 추가
-        stackView.addArrangedSubview(alertTextLabel)
+        //stackView.addArrangedSubview(alertTextLabel)
         stackView.addArrangedSubview(datePicker)
     }
     
     private func setupLayout() {
         // stackView의 제약 조건 설정
         stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()
+        }
+    }
+    
+    // 요일 버튼 탭
+    @objc private func dayButtonTapped(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        if let dayIndex = dayButtons.firstIndex(of: sender), dayIndex < daysOfWeek.count {
+            let selectedDay = daysOfWeek[dayIndex]
+            
+            print("\(selectedDay): \(dayIndex)")
         }
     }
 }

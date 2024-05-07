@@ -132,8 +132,8 @@ extension RxSuppComposeViewController {
         tableView.isEditing = true
         tableView.snp.makeConstraints { make in
             make.top.equalTo(addButton.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
     }
