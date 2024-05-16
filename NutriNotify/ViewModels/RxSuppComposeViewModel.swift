@@ -33,7 +33,7 @@ class RxSuppComposeViewModel {
         name.accept(supplement.name)
         description.accept(supplement.desc)
         
-        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else { return }
+        guard let suppAlerts = supplement.suppAlerts?.array as? [SuppAlertEntity] else { return }
         let suppAlertTimes = suppAlerts.map { $0.alertTime }
         
         // 요일 테스트
@@ -120,9 +120,6 @@ class RxSuppComposeViewModel {
 
     // suppAlert를 생성하는 메소드
     private func createSuppAlerts(for supplement: SupplementEntity) -> Observable<SupplementEntity> {
-        
-        print(#function)
-        
         return Observable<SupplementEntity>.create { observer in
             for (index,alertTime) in self.alertTimes.value.enumerated() {
                 guard let alertTime = alertTime else { continue } // nil이면 다음 반복으로 건너뜁니다.
@@ -132,7 +129,7 @@ class RxSuppComposeViewModel {
                 DataManager.shared.createSuppAlert2(for: supplement, weekday: weekday, alertTime: alertTime, isTaken: false) { [weak self] supp, suppAlert in
                     // 생성된 SuppAlertEntity에 대한 local notification을 예약합니다.
                     let id: String = suppAlert.id?.uuidString ?? "localNotification"
-                    self?.scheduleLocalNotification(id: id, for: alertTime, with: supplement.name ?? "제목없음")
+                    self?.scheduleLocalNotification(id: id, for: alertTime, weekdays: weekday, with: supplement.name ?? "제목없음")
                     
                     if index == (self?.alertTimes.value.count)! - 1 {
                         observer.onNext(supp) // 작업이 완료되었음을 나타냅니다.
@@ -145,18 +142,32 @@ class RxSuppComposeViewModel {
     }
 
     // Local Notification 생성
-    private func scheduleLocalNotification(id: String , for date: Date, with message: String) {
+    private func scheduleLocalNotification(id: String , for date: Date, weekdays: [Int], with message: String) {
         let content = UNMutableNotificationContent()
         content.title = "\(message)"
         content.body = "\(message) - 드셨다면 체크표시 해주세요."
+        
+        var dateComponenetWeekdays: [Int] = []
+        
+        for (index, weekday) in weekdays.enumerated() {
+            if weekday != 0 {
+                let indexForWeekday = index + 2 == 8 ? 1 : index + 2
+                dateComponenetWeekdays.append(indexForWeekday)
+            }
+        }
+        
+        for weekday in dateComponenetWeekdays {
+            let calendar = Calendar.current
+            var dateComponents = calendar.dateComponents([.hour, .minute], from: date)
+            dateComponents.weekday = weekday
+            
+            let idWithWeekday = "\(id)_\(weekday)"
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            let request = UNNotificationRequest(identifier: idWithWeekday, content: content, trigger: trigger)
 
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.hour, .minute], from: date)
-
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-
-        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request)
+            UNUserNotificationCenter.current().add(request)
+        }
     }
 }

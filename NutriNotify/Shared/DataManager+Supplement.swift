@@ -63,7 +63,7 @@ extension DataManager {
     
     // Supplement와 연관된 SuppAlert를 삭제
     func deleteSuppAlerts(for supplement: SupplementEntity) {
-        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else {
+        guard let suppAlerts = supplement.suppAlerts?.array as? [SuppAlertEntity] else {
             return
         }
         let center = UNUserNotificationCenter.current()
@@ -71,8 +71,13 @@ extension DataManager {
         for suppAlert in suppAlerts {
             mainContext.delete(suppAlert)
             
-            // local notification 삭제
-            center.removePendingNotificationRequests(withIdentifiers: [suppAlert.id?.uuidString ?? "localNotification"])
+            // SuppAlert에 대해 예약된 모든 알림을 삭제
+            if let id = suppAlert.id?.uuidString {
+                for weekday in 1...7 {
+                    let idWithWeekday = "\(id)_\(weekday)"
+                    center.removePendingNotificationRequests(withIdentifiers: [idWithWeekday])
+                }
+            }
         }
         
         saveMainContext()
@@ -149,8 +154,8 @@ extension DataManager {
     func sortSuppAlerts(_ supplement: SupplementEntity) -> Observable<SupplementEntity> {
         return Observable.create { observer in
             let sortByAlertTime = NSSortDescriptor(key: #keyPath(SuppAlertEntity.alertTime), ascending: true)
-            if let sortedByAlert = supplement.suppAlert?.sortedArray(using: [sortByAlertTime]) {
-                supplement.suppAlert = NSOrderedSet(array: sortedByAlert)
+            if let sortedByAlert = supplement.suppAlerts?.sortedArray(using: [sortByAlertTime]) {
+                supplement.suppAlerts = NSOrderedSet(array: sortedByAlert)
             }
             self.saveMainContext()
             

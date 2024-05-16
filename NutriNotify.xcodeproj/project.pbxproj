@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
 		BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2B4AB82BC923A4006A7359 /* ViewController.swift */; };
+		BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
 		BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		BE2B4AB82BC923A4006A7359 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplement.swift; sourceTree = "<group>"; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
 		BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuppAlertEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -70,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE3E2DB92BEE1C0200547EAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BE3E32332B98501400E62FCD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 		BE9B8A962B95BC1F00323771 /* NutriNotify */ = {
 			isa = PBXGroup;
 			children = (
+				BE3E2DB92BEE1C0200547EAB /* Models */,
 				BE3E32332B98501400E62FCD /* Shared */,
 				BE9B8AB02B95BCF900323771 /* Views */,
 				BEC96A082BB150620035805D /* ViewModels */,
@@ -297,6 +308,7 @@
 				BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */,
 				BE3E32392B98509500E62FCD /* DataManager.swift in Sources */,
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
+				BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
 				BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */,

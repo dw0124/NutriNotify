@@ -36,34 +36,33 @@ extension RxHomeViewController {
     // ViewModel 바인딩
     func bindViewModel() {
         
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionOfSupplementData>(
+        let newDataSource = RxTableViewSectionedReloadDataSource<SectionOfSuppData>(
             configureCell: { [weak self] dataSource, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
-                
+
                 // 업데이트 메뉴
                 cell.editDiaryItemHandelr = {
-                    self?.presentComposeVCwithSupplement(item)
+                    self?.presentComposeVCwithSupplement(item.supplementEntity)
                 }
-                
+
                 // 삭제 메뉴
                 cell.deleteDiaryItemHandelr = {
                     self?.viewModel.deleteItem(at: indexPath)
                 }
-                
+
                 cell.configure(item)
                 return cell
             }
         )
-        
-        // tableView 구성
-        viewModel.sections
-            .bind(to: tableView.rx.items(dataSource: dataSource))
+
+        viewModel.sectionss
+            .bind(to: tableView.rx.items(dataSource: newDataSource))
             .disposed(by: disposeBag)
-        
+
         // tableView 셀 선택
-        tableView.rx.modelSelected(SupplementEntity.self)
+        tableView.rx.modelSelected(Supplement.self)
             .subscribe(onNext: { [weak self] supplement in
-                self?.presentComposeVCwithSupplement(supplement)
+                self?.presentComposeVCwithSupplement(supplement.supplementEntity)
             })
             .disposed(by: disposeBag)
 

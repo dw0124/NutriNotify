@@ -17,7 +17,7 @@ extension DataManager {
             newSuppAlert.alertTime = alertTime
             newSuppAlert.isTaken = isTaken
             
-            supplement.addToSuppAlert(newSuppAlert)
+            supplement.addToSuppAlerts(newSuppAlert)
             
             self.saveMainContext()
             
@@ -34,7 +34,7 @@ extension DataManager {
             newSuppAlert.weekday = weekday
             newSuppAlert.isTaken = isTaken
             
-            supplement.addToSuppAlert(newSuppAlert)
+            supplement.addToSuppAlerts(newSuppAlert)
             
             self.saveMainContext()
             

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if d < 0 {
             let supplement = DataManager.shared.fetchSupplement()
             supplement.forEach { supp in
-                if let suppAlerts = supp.suppAlert?.array as? [SuppAlertEntity] {
+                if let suppAlerts = supp.suppAlerts?.array as? [SuppAlertEntity] {
                     suppAlerts.forEach { $0.isTaken = false }
                     
                     DataManager.shared.saveMainContext()

@@ -14,7 +14,7 @@ class HomeTableViewCell: UITableViewCell {
     
     var collectionViewHeight: CGFloat = 100
     
-    var suppAlertList: [SuppAlertEntity] = []
+    var suppAlertList: [SuppAlert] = []
     
     var stackView = UIStackView()
     
@@ -164,12 +164,12 @@ class HomeTableViewCell: UITableViewCell {
     
     
     // configure
-    func configure(_ supplement: SupplementEntity) {
-        if let alertList = supplement.suppAlert?.array as? [SuppAlertEntity] {
-            self.suppAlertList = alertList
-            let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
-            self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
-        }
+    func configure(_ supplement: Supplement) {
+        let alertList = supplement.suppAlerts
+        
+        self.suppAlertList = alertList
+        let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
+        self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
         
         titleLabel.text = supplement.name
         
