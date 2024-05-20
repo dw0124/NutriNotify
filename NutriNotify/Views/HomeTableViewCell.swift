@@ -7,18 +7,22 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxRelay
 
 class HomeTableViewCell: UITableViewCell {
     
     static let identifier = "HomeTableViewCell"
     
-    var collectionViewHeight: CGFloat = 100
+    var disposeBag = DisposeBag()
     
-    var suppAlertList: [SuppAlert] = []
+    var suppAlerts = PublishRelay<[SuppAlert]>()
     
     var stackView = UIStackView()
     
     let labelInset: CGFloat = 24
+    
+    var collectionViewHeight: CGFloat = 100
     
     var deleteDiaryItemHandelr: (() -> Void)?
     var editDiaryItemHandelr: (() -> Void)?
@@ -73,6 +77,7 @@ class HomeTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupCell()
+        binding()
     }
     
     required init?(coder: NSCoder) {
@@ -92,11 +97,6 @@ class HomeTableViewCell: UITableViewCell {
     
     private func setupCell() {
         selectionStyle = .none
-        
-        // CollectionView 설정
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.prefetchDataSource = self
         
         // stackView 설정
         stackView.axis = .vertical
@@ -161,15 +161,22 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
 
-    
+    private func binding() {
+        suppAlerts
+            .bind(to: collectionView.rx.items(cellIdentifier: AlertCheckBoxCell.identifier, cellType: AlertCheckBoxCell.self)) { (row, element, cell) in
+                cell.configure(with: element)
+            }
+            .disposed(by: disposeBag)
+    }
     
     // configure
     func configure(_ supplement: Supplement) {
         let alertList = supplement.suppAlerts
         
-        self.suppAlertList = alertList
-        let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
-        self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
+        self.suppAlerts.accept(alertList)
+        
+        let lineSpacing: CGFloat = CGFloat(alertList.count - 1) / 3 * 10
+        self.collectionViewHeight = CGFloat((alertList.count + 2) / 3) * 100 + lineSpacing
         
         titleLabel.text = supplement.name
         
@@ -178,35 +185,5 @@ class HomeTableViewCell: UITableViewCell {
         }
         
         collectionView.reloadData()
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension HomeTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return suppAlertList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlertCheckBoxCell.identifier, for: indexPath) as? AlertCheckBoxCell else { return UICollectionViewCell() }
-        
-        cell.configure(with: suppAlertList[indexPath.item])
-        
-        return cell
-    }
-    
-}
-
-// MARK: - UICollectionViewDataSourcePrefetching
-extension HomeTableViewCell: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print(indexPaths)
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension HomeTableViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print()
     }
 }
