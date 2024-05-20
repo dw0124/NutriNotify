@@ -30,8 +30,13 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
     }
     
     func bindViewModel() {
-        nameTextField.text = viewModel.name.value
-        descriptionTextView.text = viewModel.description.value
+        viewModel.name
+            .bind(to: nameTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.description
+            .bind(to: descriptionTextView.rx.text)
+            .disposed(by: disposeBag)
         
         nameTextField.rx.text.orEmpty
             .bind(to: viewModel.name)
