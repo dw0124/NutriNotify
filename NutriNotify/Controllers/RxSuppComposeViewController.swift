@@ -7,7 +7,6 @@
 
 import UIKit
 import Foundation
-
 import RxSwift
 
 class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
@@ -56,8 +55,6 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
                 }
                 
                 cell.didSelectWeekday = { [weak self] index in
-                    print(row, index)
-                    
                     self?.viewModel.didSelectWeekday(row: row, index: index)
                 }
             }
@@ -157,4 +154,8 @@ extension RxSuppComposeViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+}
+
+protocol ComposeVCDelegate: AnyObject {
+    func didSaveSupplement(_ supplement: SupplementEntity, isUpdate: Bool)
 }

@@ -39,9 +39,6 @@ class RxSuppComposeViewModel {
         // 요일 테스트
         let weekdays = suppAlerts.map { $0.weekday }
         
-//        let count = suppAlerts.count
-//
-//        let weekdays = Array(repeating: [1,1,1,1,1,1,1], count: count)
         self.weekdays.accept(weekdays)
         
         self.alertTimes.accept(suppAlertTimes)
@@ -62,8 +59,6 @@ class RxSuppComposeViewModel {
         var weekdayValue = weekdays.value
         weekdayValue.remove(at: indexPath.row)
         weekdays.accept(weekdayValue)
-        
-        print(alertTimes.value.count, weekdays.value.count)
     }
     
     // 요일 선택
@@ -72,8 +67,6 @@ class RxSuppComposeViewModel {
         let toggle = weekdaysValue[row]?[index] == 1 ? 0 : 1
         
         weekdaysValue[row]?[index] = toggle
-        
-        print(weekdaysValue)
         
         weekdays.accept(weekdaysValue)
     }

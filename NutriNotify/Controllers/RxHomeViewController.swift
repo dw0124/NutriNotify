@@ -12,10 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class RxHomeViewController: UIViewController, ViewModelBindableType, ComposeVCDelegate {
-    func didSaveSupplement(_ supplement: SupplementEntity, isUpdate: Bool) {
-        viewModel.addSupplement(supplement, isUpdate: isUpdate)
-    }
+class RxHomeViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: RxHomeViewModel!
     
@@ -125,6 +122,8 @@ extension RxHomeViewController {
     
 }
 
-protocol ComposeVCDelegate: AnyObject {
-    func didSaveSupplement(_ supplement: SupplementEntity, isUpdate: Bool)
+extension RxHomeViewController: ComposeVCDelegate {
+    func didSaveSupplement(_ supplement: SupplementEntity, isUpdate: Bool) {
+        viewModel.addSupplement(supplement, isUpdate: isUpdate)
+    }
 }

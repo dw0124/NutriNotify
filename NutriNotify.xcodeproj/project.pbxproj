@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
-		BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2B4AB82BC923A4006A7359 /* ViewController.swift */; };
 		BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BE2B4AB82BC923A4006A7359 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplement.swift; sourceTree = "<group>"; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */,
 				BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */,
 				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
-				BE2B4AB82BC923A4006A7359 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -311,7 +308,6 @@
 				BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
-				BE2B4AB92BC923A4006A7359 /* ViewController.swift in Sources */,
 				BEC96A052BB140E70035805D /* RxSuppComposeViewModel.swift in Sources */,
 				BEC96A032BAD5BB40035805D /* RxHomeViewModel.swift in Sources */,
 				BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */,
