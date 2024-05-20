@@ -88,7 +88,12 @@ extension RxHomeViewController {
     
     // 네비게이션 아이템 설정
     func setNavigationItem() {
-        self.navigationItem.title = "홈"
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let today = dateFormatter.string(from: date)
+        
+        self.navigationItem.title = "\(today)"
         
         let presentComposeVCButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action:#selector(presentComposeVC(_:)))
         self.navigationItem.rightBarButtonItem = presentComposeVCButton
