@@ -20,9 +20,6 @@ class RxSuppComposeViewModel {
     var name: BehaviorRelay<String?> = BehaviorRelay(value: "")
     var description: BehaviorRelay<String?> = BehaviorRelay(value: "")
     var alertTimes: BehaviorRelay<[Date?]> = BehaviorRelay(value: [Date()])
-    
-    // 요일 배열
-    // local notification에 요일을 선택하여 추가하는 기능 추가할 예정
     var weekdays: BehaviorRelay<[[Int]?]> = BehaviorRelay(value: [[1,1,1,1,1,1,1]])
     
     init(_ supplement: SupplementEntity? = nil) {
