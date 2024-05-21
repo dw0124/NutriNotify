@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
 		BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */; };
+		BE3E2DBF2BFC80D900547EAB /* weekdayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
 		BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplement.swift; sourceTree = "<group>"; };
+		BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekdayHeaderView.swift; sourceTree = "<group>"; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
 		BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuppAlertEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -141,6 +143,7 @@
 				BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */,
 				BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */,
 				BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */,
+				BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
 				BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
+				BE3E2DBF2BFC80D900547EAB /* weekdayHeaderView.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
 				BEC96A052BB140E70035805D /* RxSuppComposeViewModel.swift in Sources */,
 				BEC96A032BAD5BB40035805D /* RxHomeViewModel.swift in Sources */,

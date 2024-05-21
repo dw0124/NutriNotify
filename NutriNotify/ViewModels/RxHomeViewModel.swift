@@ -30,20 +30,27 @@ extension SectionOfSuppData: SectionModelType {
 class RxHomeViewModel {
     var disposeBag = DisposeBag()
     
+    // 전체 데이터
     var supplementsSubject: BehaviorSubject<[SupplementEntity]>!
     
+    // 필터링 되어 테이블뷰에 보여질 데이터
     var sectionss: BehaviorRelay<[SectionOfSuppData]> = BehaviorRelay(value: [])
+    
+    var selectedWeekday: BehaviorRelay<Int> = {
+        var weekday = Calendar.current.component(.weekday, from: .now) - 2
+        weekday = weekday == -1 ? 6 : weekday
+        return BehaviorRelay(value: weekday)
+    }()
     
     init(supplements: [SupplementEntity]) {
         supplementsSubject = BehaviorSubject(value: supplements)
         
-        supplementsSubject
-            .map { [weak self] supplements in
-                self?.filterToday(supplements) ?? []
+        Observable.combineLatest(supplementsSubject, selectedWeekday)
+            .map { [weak self] supplements, weekday in
+                self?.filterToday(supplements, weekday: weekday) ?? []
             }
             .bind(to: sectionss)
             .disposed(by: disposeBag)
-        
     }
     
     // 셀 삭제 메소드
@@ -81,10 +88,9 @@ class RxHomeViewModel {
         }
     }
     
-    func filterToday(_ supplements: [SupplementEntity]) -> [SectionOfSuppData] {
-        // 오늘 요일 : 1~7: 일~토 -> 0~6
-        var weekday = Calendar.current.component(.weekday, from: .now) - 2
-        weekday = weekday == -1 ? 6 : weekday
+    func filterToday(_ supplements: [SupplementEntity], weekday: Int) -> [SectionOfSuppData] {
+        
+        if weekday == -1 { return [SectionOfSuppData(header: "First section", items: [Supplement(supplemntEntity: supplements[0])])] }
         
         // 섹션을 저장할 배열
         var suppplementArr: [Supplement] = []
@@ -110,7 +116,7 @@ class RxHomeViewModel {
             
             index += 1
         }
-        
+        print(weekday)
         return [SectionOfSuppData(header: "First section", items: suppplementArr)]
     }
 }

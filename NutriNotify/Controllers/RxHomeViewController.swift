@@ -33,6 +33,8 @@ extension RxHomeViewController {
     // ViewModel 바인딩
     func bindViewModel() {
         
+        tableView.rx.setDelegate(self)
+        
         let newDataSource = RxTableViewSectionedReloadDataSource<SectionOfSuppData>(
             configureCell: { [weak self] dataSource, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
@@ -75,6 +77,7 @@ extension RxHomeViewController {
     func setupUI() {
         view.backgroundColor = .white
         
+        tableView.register(WeekdayHeaderView.self, forHeaderFooterViewReuseIdentifier: WeekdayHeaderView.identifier)
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         
@@ -130,5 +133,22 @@ extension RxHomeViewController {
 extension RxHomeViewController: ComposeVCDelegate {
     func didSaveSupplement(_ supplement: SupplementEntity, isUpdate: Bool) {
         viewModel.addSupplement(supplement, isUpdate: isUpdate)
+    }
+}
+extension RxHomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let customHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: WeekdayHeaderView.identifier) as? WeekdayHeaderView else {
+            return nil
+        }
+        
+        customHeaderView.selectedWeekdaySubject
+            .subscribe(onNext: { [weak self] index in
+                self?.viewModel.selectedWeekday.accept(index - 1)
+                
+                self?.navigationItem.title = customHeaderView.daysOfWeek[index] + "요일"
+            })
+            .disposed(by: disposeBag)
+        
+        return customHeaderView
     }
 }
