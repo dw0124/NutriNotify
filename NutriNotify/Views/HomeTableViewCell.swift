@@ -180,10 +180,26 @@ class HomeTableViewCell: UITableViewCell {
         
         titleLabel.text = supplement.name
         
-        collectionView.snp.updateConstraints {
+        collectionView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(collectionViewHeight).priority(.high)
+            $0.centerX.equalToSuperview()
         }
         
-        collectionView.reloadData()
+        collectionView.isHidden = false
+    }
+    
+    func configure2(_ supplement: Supplement, all: Bool) {
+        titleLabel.text = supplement.name
+        
+        self.collectionViewHeight = 0
+        
+        collectionView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(collectionViewHeight).priority(.high)
+            $0.centerX.equalToSuperview()
+        }
+        
+        collectionView.isHidden = true
     }
 }

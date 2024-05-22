@@ -33,7 +33,7 @@ extension RxHomeViewController {
     // ViewModel 바인딩
     func bindViewModel() {
         
-        tableView.rx.setDelegate(self)
+        _ = tableView.rx.setDelegate(self)
         
         let newDataSource = RxTableViewSectionedReloadDataSource<SectionOfSuppData>(
             configureCell: { [weak self] dataSource, tableView, indexPath, item in
@@ -49,7 +49,11 @@ extension RxHomeViewController {
                     self?.viewModel.deleteItem(at: indexPath)
                 }
 
-                cell.configure(item)
+                if self?.viewModel.selectedWeekday.value == -1 {
+                    cell.configure2(item, all: true)
+                } else {
+                    cell.configure(item)
+                }
                 return cell
             }
         )

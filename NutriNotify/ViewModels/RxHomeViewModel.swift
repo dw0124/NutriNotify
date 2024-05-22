@@ -90,7 +90,10 @@ class RxHomeViewModel {
     
     func filterToday(_ supplements: [SupplementEntity], weekday: Int) -> [SectionOfSuppData] {
         
-        if weekday == -1 { return [SectionOfSuppData(header: "First section", items: [Supplement(supplemntEntity: supplements[0])])] }
+        if weekday == -1 {
+            let supp = supplements.map { Supplement(supplemntEntity: $0) }
+            return [SectionOfSuppData(header: "First section", items: supp)]
+        }
         
         // 섹션을 저장할 배열
         var suppplementArr: [Supplement] = []
@@ -116,7 +119,6 @@ class RxHomeViewModel {
             
             index += 1
         }
-        print(weekday)
         return [SectionOfSuppData(header: "First section", items: suppplementArr)]
     }
 }

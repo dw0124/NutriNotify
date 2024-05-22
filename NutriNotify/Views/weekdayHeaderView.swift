@@ -14,6 +14,8 @@ class WeekdayHeaderView: UITableViewHeaderFooterView {
     
     var disposeBag = DisposeBag()
     
+    var weekdayButtons: [UIButton] = []
+    
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -46,6 +48,7 @@ class WeekdayHeaderView: UITableViewHeaderFooterView {
             let button = UIButton()
             button.setTitle(day, for: .normal)
             button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(.white, for: .selected)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             button.backgroundColor = .white
             button.layer.cornerRadius = 5
@@ -53,6 +56,8 @@ class WeekdayHeaderView: UITableViewHeaderFooterView {
             button.addTarget(self, action: #selector(selectedWeekday(_:)), for: .touchUpInside)
             button.tag = index
             stackView.addArrangedSubview(button)
+            
+            weekdayButtons.append(button)
         }
     }
     
@@ -60,5 +65,11 @@ class WeekdayHeaderView: UITableViewHeaderFooterView {
         let selectedIndex = sender.tag
         // 버튼이 눌린 인덱스를 Subject를 통해 방출
         selectedWeekdaySubject.onNext(selectedIndex)
+        
+        // 모든 버튼의 선택 상태를 업데이트
+        for (index, button) in weekdayButtons.enumerated() {
+            button.isSelected = (index == selectedIndex)
+            button.backgroundColor = button.isSelected ? .darkGray : .white
+        }
     }
 }
