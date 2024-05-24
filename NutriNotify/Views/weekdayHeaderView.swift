@@ -31,6 +31,14 @@ class WeekdayHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
+        
+        
+        var weekday = Calendar.current.component(.weekday, from: .now) - 2
+        weekday = weekday == -1 ? 6 : weekday
+        weekday += 1
+        
+        weekdayButtons[weekday].isSelected = true
+        weekdayButtons[weekday].backgroundColor = .darkGray
     }
 
     required init?(coder aDecoder: NSCoder) {
