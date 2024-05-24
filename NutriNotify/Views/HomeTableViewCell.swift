@@ -180,10 +180,8 @@ class HomeTableViewCell: UITableViewCell {
         
         titleLabel.text = supplement.name
         
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+        collectionView.snp.updateConstraints {
             $0.height.equalTo(collectionViewHeight).priority(.high)
-            $0.centerX.equalToSuperview()
         }
         
         collectionView.isHidden = false
@@ -194,10 +192,8 @@ class HomeTableViewCell: UITableViewCell {
         
         self.collectionViewHeight = 0
         
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
+        collectionView.snp.updateConstraints {
             $0.height.equalTo(collectionViewHeight).priority(.high)
-            $0.centerX.equalToSuperview()
         }
         
         collectionView.isHidden = true
