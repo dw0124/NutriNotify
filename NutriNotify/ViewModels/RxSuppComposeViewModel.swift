@@ -119,7 +119,7 @@ class RxSuppComposeViewModel {
                 DataManager.shared.createSuppAlert2(for: supplement, weekday: weekday, alertTime: alertTime, isTaken: false) { [weak self] supp, suppAlert in
                     // 생성된 SuppAlertEntity에 대한 local notification을 예약합니다.
                     let id: String = suppAlert.id?.uuidString ?? "localNotification"
-                    self?.scheduleLocalNotification(id: id, for: alertTime, weekdays: weekday, with: supplement.name ?? "제목없음")
+                    self?.scheduleLocalNotification(id: id, for: alertTime, weekdays: weekday, title: supplement.name ?? "제목없음", body: supplement.desc ?? "설명 없음")
                     
                     if index == (self?.alertTimes.value.count)! - 1 {
                         observer.onNext(supp) // 작업이 완료되었음을 나타냅니다.
@@ -132,10 +132,10 @@ class RxSuppComposeViewModel {
     }
 
     // Local Notification 생성
-    private func scheduleLocalNotification(id: String , for date: Date, weekdays: [Int], with message: String) {
+    private func scheduleLocalNotification(id: String , for date: Date, weekdays: [Int], title: String, body: String) {
         let content = UNMutableNotificationContent()
-        content.title = "\(message)"
-        content.body = "\(message) - 드셨다면 체크표시 해주세요."
+        content.title = "\(title)"
+        content.body = "\(body)"
         
         var dateComponenetWeekdays: [Int] = []
         
