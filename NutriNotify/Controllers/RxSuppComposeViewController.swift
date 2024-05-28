@@ -18,8 +18,11 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
     var delegate: ComposeVCDelegate!
     
     private let tableView = UITableView()
+    private let nameLabel = UILabel()
     private let nameTextField = UITextField()
-    private let descriptionTextView = UITextView()
+    private let descriptionLabel = UILabel()
+    private let descriptionTextField = UITextField()
+    private let addButton = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +38,14 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
             .disposed(by: disposeBag)
         
         viewModel.description
-            .bind(to: descriptionTextView.rx.text)
+            .bind(to: descriptionTextField.rx.text)
             .disposed(by: disposeBag)
         
         nameTextField.rx.text.orEmpty
             .bind(to: viewModel.name)
             .disposed(by: disposeBag)
         
-        descriptionTextView.rx.text.orEmpty
+        descriptionTextField.rx.text.orEmpty
             .bind(to: viewModel.description)
             .disposed(by: disposeBag)
         
@@ -103,37 +106,49 @@ extension RxSuppComposeViewController {
     func setupUI() {
         view.backgroundColor = .white
         
+        nameLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        nameLabel.text = "알림 제목"
+        
         // 텍스트 필드
-        view.addSubview(nameTextField)
-        nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(44)
-        }
-        nameTextField.placeholder = "영양제 이름"
+        nameTextField.text = "제목"
         nameTextField.borderStyle = .roundedRect
-
+        
+        descriptionLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        descriptionLabel.text = "알림 내용"
+        
         // 텍스트 뷰
-        view.addSubview(descriptionTextView)
-        descriptionTextView.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(100)
-        }
-        descriptionTextView.text = "설명"
-        descriptionTextView.font = UIFont.systemFont(ofSize: nameTextField.font?.pointSize ?? 17.0)
-        descriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-        descriptionTextView.layer.borderWidth = 1.0
-        descriptionTextView.layer.cornerRadius = 5
+        descriptionTextField.text = "내용"
+        descriptionTextField.borderStyle = .roundedRect
         
         // 알림 추가 버튼
-        let addButton = UIButton(type: .system)
         addButton.setTitle("알림 추가", for: .normal)
         addButton.addTarget(self, action: #selector(addCell), for: .touchUpInside)
-        view.addSubview(addButton)
-        addButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(descriptionTextView.snp.bottom).offset(30)
+        
+        
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(nameTextField)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(descriptionTextField)
+        stackView.addArrangedSubview(addButton)
+        
+        stackView.setCustomSpacing(16, after: nameTextField)
+        stackView.setCustomSpacing(16, after: descriptionTextField)
+        
+        view.addSubview(stackView)
+        
+        nameLabel.snp.makeConstraints { $0.height.equalTo(24) }
+        nameTextField.snp.makeConstraints { $0.height.equalTo(44) }
+        descriptionLabel.snp.makeConstraints { $0.height.equalTo(24) }
+        descriptionTextField.snp.makeConstraints { $0.height.equalTo(44) }
+        addButton.snp.makeConstraints { $0.height.equalTo(32) }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
         
         // 테이블 뷰
@@ -141,7 +156,7 @@ extension RxSuppComposeViewController {
         tableView.register(DatePickerCell.self, forCellReuseIdentifier: DatePickerCell.identifier)
         tableView.isEditing = true
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(addButton.snp.bottom).offset(10)
+            make.top.equalTo(stackView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(0)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
