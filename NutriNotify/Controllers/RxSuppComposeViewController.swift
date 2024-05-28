@@ -24,6 +24,10 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
     private let descriptionTextField = UITextField()
     private let addButton = UIButton(type: .system)
     
+    
+    lazy var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action:#selector(dismissVC))
+    lazy var saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action:#selector(saveSupp))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,16 +75,19 @@ class RxSuppComposeViewController: UIViewController, ViewModelBindableType {
         tableView.rx.itemDeleted
             .subscribe(onNext: { [weak self] in self?.viewModel.deleteItem(at: $0) })
             .disposed(by: disposeBag)
+        
+        // 제목을 입력하지 않으면 네비게이션 오른쪽 저장버튼 비활성화
+        viewModel.name
+            .map { !($0?.isEmpty ?? true) }
+            .bind(to: saveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
 }
 
 extension RxSuppComposeViewController {
     func setNavigationItem() {
-        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action:#selector(dismissVC))
-        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action:#selector(saveSupp))
-        
-        self.navigationItem.leftBarButtonItem = cancelButton
+       self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = saveButton
     }
     
@@ -106,17 +113,29 @@ extension RxSuppComposeViewController {
     func setupUI() {
         view.backgroundColor = .white
         
+        // 제목 label
         nameLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        nameLabel.text = "알림 제목"
         
-        // 텍스트 필드
+        let string = "* 알림 제목"
+
+        // NSMutableAttributedString을 사용하여 문자열 속성 지정
+        let attributedString = NSMutableAttributedString(string: string)
+
+        // 특정 범위에 속성 지정
+        let range = NSRange(location: 0, length: 1) // "Hello" 부분에 적용
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: range) // 텍스트 색상을 빨간색으로 변경
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 14), range: range) // 폰트를 볼드체로 변경
+        
+        nameLabel.attributedText = attributedString
+        
+        // 제목 텍스트 필드
         nameTextField.text = "제목"
         nameTextField.borderStyle = .roundedRect
         
         descriptionLabel.font = .systemFont(ofSize: 14, weight: .medium)
         descriptionLabel.text = "알림 내용"
         
-        // 텍스트 뷰
+        // 내용 텍스트필드
         descriptionTextField.text = "내용"
         descriptionTextField.borderStyle = .roundedRect
         
