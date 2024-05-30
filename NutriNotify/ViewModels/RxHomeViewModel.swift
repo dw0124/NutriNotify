@@ -55,17 +55,25 @@ class RxHomeViewModel {
     
     // 셀 삭제 메소드
     func deleteItem(at indexPath: IndexPath) {
-        // sections의 items에서 indexPath에 해당하는 아이템을 삭제하고 section을 업데이트함
-        var sectionsValue = sectionss.value
-        var items = sectionsValue[indexPath.section].items
-        
-        // CoreData에서 supplement 삭제
-        DataManager.shared.deleteSupplement(entity: items[indexPath.row].supplementEntity)
-        
-        items.remove(at: indexPath.row)
-        sectionsValue[indexPath.section] = SectionOfSuppData(header: sectionsValue[indexPath.section].header, items: items)
-        
-        sectionss.accept(sectionsValue)
+        do{
+            // 전체 목록
+            var newSupplements = try supplementsSubject.value()
+            
+            // 표시되고 있는 목록의 아이템
+            let sectionsValue = sectionss.value
+            let items = sectionsValue[indexPath.section].items
+            
+            // 전체 목록에서 삭제
+            if let firstIndex = newSupplements.firstIndex(where: { $0.id == items[indexPath.row].supplementEntity.id }) {
+                newSupplements.remove(at: firstIndex)
+            }
+            supplementsSubject.onNext(newSupplements)
+            
+            // CoreData에서 supplement 삭제
+            DataManager.shared.deleteSupplement(entity: items[indexPath.row].supplementEntity)
+        }catch {
+            print(error)
+        }
     }
     
     // ComposeVC에서 저장을 했을때 SupplementEntity를 tableView에 추가
