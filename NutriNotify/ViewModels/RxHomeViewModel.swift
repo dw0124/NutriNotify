@@ -5,9 +5,6 @@
 //  Created by 김두원 on 2024/03/22.
 //
 
-import RxSwift
-import RxDataSources
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -31,7 +28,7 @@ class RxHomeViewModel {
     var disposeBag = DisposeBag()
     
     // 전체 데이터
-    var supplementsSubject: BehaviorSubject<[SupplementEntity]>!
+    var supplementsRelay: BehaviorRelay<[SupplementEntity]> = BehaviorRelay(value: [])
     
     // 필터링 되어 테이블뷰에 보여질 데이터
     var sectionss: BehaviorRelay<[SectionOfSuppData]> = BehaviorRelay(value: [])
@@ -43,9 +40,9 @@ class RxHomeViewModel {
     }()
     
     init(supplements: [SupplementEntity]) {
-        supplementsSubject = BehaviorSubject(value: supplements)
+        supplementsRelay = BehaviorRelay(value: supplements)
         
-        Observable.combineLatest(supplementsSubject, selectedWeekday)
+        Observable.combineLatest(supplementsRelay, selectedWeekday)
             .map { [weak self] supplements, weekday in
                 self?.filterToday(supplements, weekday: weekday) ?? []
             }
@@ -55,9 +52,8 @@ class RxHomeViewModel {
     
     // 셀 삭제 메소드
     func deleteItem(at indexPath: IndexPath) {
-        do{
             // 전체 목록
-            var newSupplements = try supplementsSubject.value()
+            var newSupplements = supplementsRelay.value
             
             // 표시되고 있는 목록의 아이템
             let sectionsValue = sectionss.value
@@ -67,33 +63,26 @@ class RxHomeViewModel {
             if let firstIndex = newSupplements.firstIndex(where: { $0.id == items[indexPath.row].supplementEntity.id }) {
                 newSupplements.remove(at: firstIndex)
             }
-            supplementsSubject.onNext(newSupplements)
+            supplementsRelay.accept(newSupplements)
             
             // CoreData에서 supplement 삭제
             DataManager.shared.deleteSupplement(entity: items[indexPath.row].supplementEntity)
-        }catch {
-            print(error)
-        }
     }
     
     // ComposeVC에서 저장을 했을때 SupplementEntity를 tableView에 추가
     func addSupplement(_ supplement: SupplementEntity, isUpdate: Bool) {
-        do{
-            var newSupplements = try supplementsSubject.value()
-            
-            // create한 경우만 insert
-            if isUpdate == false {
-                newSupplements.insert(supplement, at: 0)
-            } else {
-                if let firstIndex = newSupplements.firstIndex(where: { $0.id == supplement.id }) {
-                    newSupplements[firstIndex] = supplement
-                }
+        var newSupplements = supplementsRelay.value
+        
+        // create한 경우만 insert
+        if isUpdate == false {
+            newSupplements.insert(supplement, at: 0)
+        } else {
+            if let firstIndex = newSupplements.firstIndex(where: { $0.id == supplement.id }) {
+                newSupplements[firstIndex] = supplement
             }
-            
-            supplementsSubject.onNext(newSupplements)
-        }catch {
-            print(error)
         }
+        
+        supplementsRelay.accept(newSupplements)
     }
     
     func filterToday(_ supplements: [SupplementEntity], weekday: Int) -> [SectionOfSuppData] {
@@ -106,8 +95,6 @@ class RxHomeViewModel {
         // 섹션을 저장할 배열
         var suppplementArr: [Supplement] = []
 
-        var index = 0
-        
         for supplement in supplements {
             
             var newSupp = Supplement(supplemntEntity: supplement)
@@ -124,8 +111,6 @@ class RxHomeViewModel {
             if newSupp.suppAlerts.count > 0 {
                 suppplementArr.append(newSupp)
             }
-            
-            index += 1
         }
         return [SectionOfSuppData(header: "First section", items: suppplementArr)]
     }
