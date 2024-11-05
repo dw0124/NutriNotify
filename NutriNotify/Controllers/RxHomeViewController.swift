@@ -23,6 +23,7 @@ class RxHomeViewController: UIViewController, ViewModelBindableType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setupUI()
         setNavigationItem()
     }
