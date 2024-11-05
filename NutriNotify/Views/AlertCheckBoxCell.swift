@@ -11,7 +11,7 @@ import SnapKit
 class AlertCheckBoxCell: UICollectionViewCell {
     static let identifier = "AlertCheckBoxCell"
     
-    var suppAlert: SuppAlertEntity! = nil
+    var suppAlert: SuppAlert! = nil
     
     // UI 요소
     let stackView = UIStackView()
@@ -33,7 +33,7 @@ class AlertCheckBoxCell: UICollectionViewCell {
         super.prepareForReuse()
     }
     
-    func configure(with suppAlert: SuppAlertEntity) {
+    func configure(with suppAlert: SuppAlert) {
         // suppAlert에서 데이터를 가져와서 UI 업데이트
         self.suppAlert = suppAlert
         
@@ -41,7 +41,7 @@ class AlertCheckBoxCell: UICollectionViewCell {
         dateFormatter.dateFormat = "HH:mm" // 시간 형식으로 포맷 설정
         
         alertTimeLabel.text = dateFormatter.string(from: suppAlert.alertTime!) // 시간만 표시
-        button.isSelected = suppAlert.isTaken // isTaken 값에 따라 버튼의 선택 상태 변경
+        button.isSelected = suppAlert.suppAlertEntity.isTaken // isTaken 값에 따라 버튼의 선택 상태 변경
     }
     
     // UI 구성 및 레이아웃 설정
@@ -85,6 +85,7 @@ class AlertCheckBoxCell: UICollectionViewCell {
         button.isSelected = !button.isSelected
         
         suppAlert?.isTaken = button.isSelected
+        suppAlert.suppAlertEntity.isTaken = button.isSelected
         DataManager.shared.saveMainContext()
     }
 }

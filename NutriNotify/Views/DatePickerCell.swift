@@ -4,6 +4,21 @@ import SnapKit
 class DatePickerCell: UITableViewCell {
     static let identifier = "DatePickerCell"
     
+    
+    // 요일 배열
+    let daysOfWeek = ["월", "화", "수", "목", "금", "토", "일"]
+    
+    private let weekdayButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 3
+        stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        return stackView
+    }()
+    
+    private var dayButtons: [UIButton] = []
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -26,11 +41,12 @@ class DatePickerCell: UITableViewCell {
         datePicker.locale = Locale(identifier: "ko-KR")
         
         //datePicker.subviews.first?.subviews.last?.backgroundColor = .clear // background color for time part
-        datePicker.addTarget(self, action: #selector(didSelectedTime(_:)), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(didSelectedTime(_:)), for: .editingDidEnd)
         return datePicker
     }()
     
     var didSelectTime: ((Date) -> Void)?
+    var didSelectWeekday: ((Int) -> Void)?
     
     @objc func didSelectedTime(_ sender: UIDatePicker) {
         didSelectTime?(sender.date)
@@ -52,19 +68,60 @@ class DatePickerCell: UITableViewCell {
     }
     
     private func setupCell() {
+        
+        // 요일 버튼 생성 및 설정
+        for day in daysOfWeek {
+            let button = UIButton(type: .custom)
+            button.setTitle(day, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+            button.setTitleColor(UIColor.black, for: .normal)
+            button.setTitleColor(.systemGray4, for: .selected)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = .clear
+            button.addTarget(self, action: #selector(didSelectedWeekday(_:)), for: .touchUpInside)
+            
+            addSubview(button)
+            dayButtons.append(button)
+        }
+        
         // contentView에 stackView 추가
         contentView.addSubview(stackView)
         
+        dayButtons.forEach {
+            weekdayButtonStackView.addArrangedSubview($0)
+        }
+        
+        stackView.addArrangedSubview(weekdayButtonStackView)
+        
         // alertTextLabel과 datePicker를 stackView에 추가
-        stackView.addArrangedSubview(alertTextLabel)
+        //stackView.addArrangedSubview(alertTextLabel)
         stackView.addArrangedSubview(datePicker)
     }
     
     private func setupLayout() {
         // stackView의 제약 조건 설정
         stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()
         }
     }
+    
+    // 요일 버튼 탭
+    @objc func didSelectedWeekday(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        guard let dayIndex = dayButtons.firstIndex(of: sender), dayIndex < daysOfWeek.count else { return }
+        
+        didSelectWeekday?(dayIndex)
+    }
+
+    // DatePickerCell에 선택 상태를 업데이트하는 메소드
+    func updateSelectionStates(for weekdays: [Int]?) {
+        guard let weekdays = weekdays else { return }
+        for (index, button) in dayButtons.enumerated() {
+            let isSelected = weekdays[index] == 0
+            button.isSelected = isSelected
+        }
+    }
+
 }

@@ -13,28 +13,49 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = (scene as? UIWindowScene) else { return }
         
-//        let homeViewModel = HomeViewModel()
-//        var homeViewController = HomeViewController()
-//
-//        homeViewController.bind(viewModel: homeViewModel)
-//
-//        let navigationController = UINavigationController(rootViewController: homeViewController)
+        let window = UIWindow(windowScene: windowScene)
         
-        // ----- Rx Test -----
+        window.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+        window.makeKeyAndVisible()
+        
+        // ViewModel에 전달하기 위한 supplements
+        // 런치스크린이 보여지는 동안 데이터를 불러옴
         let supplements = DataManager.shared.fetchSupplement()
-
-        let rxtestVM = RxDataSourceViewModel(supplements: supplements)
-        var rxtestViewController = RxHomeViewController()
         
-        rxtestViewController.bind(viewModel: rxtestVM)
-
-        let navigationController = UINavigationController(rootViewController: rxtestViewController)
-        // -------------------
-
-        window?.rootViewController = navigationController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let rxtestVM = RxHomeViewModel(supplements: supplements)
+            
+            var rxtestViewController = RxHomeViewController()
+            rxtestViewController.bind(viewModel: rxtestVM)
+            
+            let navigationController = UINavigationController(rootViewController: rxtestViewController)
+            
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            
+            self.window = window
+        }
         
-        guard let _ = (scene as? UIWindowScene) else { return }
+//        // RxSwift를 사용한 rootVC 설정
+//        // ViewModel에 전달하기 위한 supplement
+//        DataManager.shared.rxFetchSupplement()
+//            .subscribe(onNext: { supplements in
+//
+//                let rxtestVM = RxHomeViewModel(supplements: supplements)
+//
+//                var rxtestViewController = RxHomeViewController()
+//                rxtestViewController.bind(viewModel: rxtestVM)
+//
+//                let navigationController = UINavigationController(rootViewController: rxtestViewController)
+//
+//                window.rootViewController = navigationController
+//                window.makeKeyAndVisible()
+//
+//                self.window = window
+//            })
+//            .dispose()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

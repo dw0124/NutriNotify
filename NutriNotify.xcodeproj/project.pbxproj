@@ -7,65 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */; };
+		1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E44251027AF28059549D3995 /* Pods_NutriNotify.framework */; };
+		BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */; };
+		BE3E2DBF2BFC80D900547EAB /* weekdayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */; };
 		BE3E32392B98509500E62FCD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32382B98509500E62FCD /* DataManager.swift */; };
-		BE3E32452B98998C00E62FCD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32442B98998C00E62FCD /* Model.swift */; };
 		BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */; };
 		BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */; };
 		BE3E325E2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E325A2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift */; };
 		BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */; };
-		BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */; };
-		BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */; };
 		BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */; };
-		BE3E32692B9EE69B00E62FCD /* SuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */; };
 		BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */; };
 		BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */; };
 		BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */; };
-		BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */; };
 		BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32722BAC024600E62FCD /* Date+Extensions.swift */; };
 		BE3E32752BAC3FCF00E62FCD /* RxHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */; };
 		BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A972B95BC1F00323771 /* AppDelegate.swift */; };
 		BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */; };
-		BE9B8A9F2B95BC1F00323771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8A9D2B95BC1F00323771 /* Main.storyboard */; };
 		BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE9B8AA02B95BC1F00323771 /* NutriNotify.xcdatamodeld */; };
 		BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA32B95BC2100323771 /* Assets.xcassets */; };
 		BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */; };
-		BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */; };
-		BEC96A052BB140E70035805D /* Rx+SuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */; };
+		BEC96A032BAD5BB40035805D /* RxHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A022BAD5BB40035805D /* RxHomeViewModel.swift */; };
+		BEC96A052BB140E70035805D /* RxSuppComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A042BB140E70035805D /* RxSuppComposeViewModel.swift */; };
 		BEC96A072BB1505D0035805D /* RxSuppComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.release.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.release.xcconfig"; sourceTree = "<group>"; };
-		1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.debug.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.debug.xcconfig"; sourceTree = "<group>"; };
-		36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriNotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplement.swift; sourceTree = "<group>"; };
+		BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekdayHeaderView.swift; sourceTree = "<group>"; };
 		BE3E32382B98509500E62FCD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		BE3E32442B98998C00E62FCD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BE3E32562B99958D00E62FCD /* DataManager+Supplement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Supplement.swift"; sourceTree = "<group>"; };
 		BE3E32582B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuppAlertEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		BE3E325A2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SupplementEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		BE3E32602B99971100E62FCD /* DataManager+SuppAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+SuppAlert.swift"; sourceTree = "<group>"; };
-		BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppComposeViewController.swift; sourceTree = "<group>"; };
 		BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
-		BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppComposeViewModel.swift; sourceTree = "<group>"; };
 		BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCheckBoxCell.swift; sourceTree = "<group>"; };
 		BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
-		BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BE3E32722BAC024600E62FCD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxHomeViewController.swift; sourceTree = "<group>"; };
 		BE9B8A942B95BC1F00323771 /* NutriNotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriNotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9B8A972B95BC1F00323771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE9B8A9E2B95BC1F00323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE9B8AA12B95BC1F00323771 /* NutriNotify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NutriNotify.xcdatamodel; sourceTree = "<group>"; };
 		BE9B8AA32B95BC2100323771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE9B8AA62B95BC2100323771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE9B8AA82B95BC2100323771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourceViewModel.swift; sourceTree = "<group>"; };
-		BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+SuppComposeViewModel.swift"; sourceTree = "<group>"; };
+		BEC96A022BAD5BB40035805D /* RxHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxHomeViewModel.swift; sourceTree = "<group>"; };
+		BEC96A042BB140E70035805D /* RxSuppComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSuppComposeViewModel.swift; sourceTree = "<group>"; };
 		BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSuppComposeViewController.swift; sourceTree = "<group>"; };
+		CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.release.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.release.xcconfig"; sourceTree = "<group>"; };
+		E44251027AF28059549D3995 /* Pods_NutriNotify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriNotify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriNotify.debug.xcconfig"; path = "Target Support Files/Pods-NutriNotify/Pods-NutriNotify.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,19 +65,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3695535E55947DEB67152F49 /* Pods_NutriNotify.framework in Frameworks */,
+				1F86E17E06AAAB796536CC21 /* Pods_NutriNotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37E6C7CA184A7D246828CCF0 /* Frameworks */ = {
+		BE3E2DB92BEE1C0200547EAB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				36A48AA624BF655B726283CA /* Pods_NutriNotify.framework */,
+				BE3E2DB72BEE1BFC00547EAB /* Supplement.swift */,
 			);
-			name = Frameworks;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BE3E32332B98501400E62FCD /* Shared */ = {
@@ -108,7 +100,7 @@
 				BE9B8A962B95BC1F00323771 /* NutriNotify */,
 				BE9B8A952B95BC1F00323771 /* Products */,
 				D30B1CD6FA523EA77C792F25 /* Pods */,
-				37E6C7CA184A7D246828CCF0 /* Frameworks */,
+				E648DE22127691C65FB1BB01 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,12 +115,11 @@
 		BE9B8A962B95BC1F00323771 /* NutriNotify */ = {
 			isa = PBXGroup;
 			children = (
-				BEC96A012BAC53270035805D /* RxTest */,
+				BE3E2DB92BEE1C0200547EAB /* Models */,
 				BE3E32332B98501400E62FCD /* Shared */,
-				BE9B8AAF2B95BCF100323771 /* Models */,
 				BE9B8AB02B95BCF900323771 /* Views */,
-				BE9B8AB12B95BD0300323771 /* ViewModels */,
-				BE9B8AB22B95BD2F00323771 /* Controllers */,
+				BEC96A082BB150620035805D /* ViewModels */,
+				BEC96A092BB1506B0035805D /* Controllers */,
 				BE9B8AAE2B95BCA700323771 /* predefined */,
 			);
 			path = NutriNotify;
@@ -139,20 +130,11 @@
 			children = (
 				BE9B8A972B95BC1F00323771 /* AppDelegate.swift */,
 				BE9B8A992B95BC1F00323771 /* SceneDelegate.swift */,
-				BE9B8A9D2B95BC1F00323771 /* Main.storyboard */,
 				BE9B8AA32B95BC2100323771 /* Assets.xcassets */,
 				BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */,
 				BE9B8AA82B95BC2100323771 /* Info.plist */,
 			);
 			path = predefined;
-			sourceTree = "<group>";
-		};
-		BE9B8AAF2B95BCF100323771 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32442B98998C00E62FCD /* Model.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		BE9B8AB02B95BCF900323771 /* Views */ = {
@@ -161,43 +143,16 @@
 				BE3E32662B9EBEC300E62FCD /* DatePickerCell.swift */,
 				BE3E326A2BA4199800E62FCD /* HomeTableViewCell.swift */,
 				BE3E326C2BA41BB400E62FCD /* AlertCheckBoxCell.swift */,
+				BE3E2DBE2BFC80D900547EAB /* weekdayHeaderView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		BE9B8AB12B95BD0300323771 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32682B9EE69B00E62FCD /* SuppComposeViewModel.swift */,
-				BE3E32702BABF9F800E62FCD /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		BE9B8AB22B95BD2F00323771 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				BE3E32622B9B0DCC00E62FCD /* HomeViewController.swift */,
-				BE3E32642B9E02A600E62FCD /* SuppComposeViewController.swift */,
-				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		BEC96A012BAC53270035805D /* RxTest */ = {
-			isa = PBXGroup;
-			children = (
-				BEC96A092BB1506B0035805D /* Controllers */,
-				BEC96A082BB150620035805D /* ViewModels */,
-			);
-			path = RxTest;
 			sourceTree = "<group>";
 		};
 		BEC96A082BB150620035805D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				BEC96A022BAD5BB40035805D /* RxDataSourceViewModel.swift */,
-				BEC96A042BB140E70035805D /* Rx+SuppComposeViewModel.swift */,
+				BEC96A022BAD5BB40035805D /* RxHomeViewModel.swift */,
+				BEC96A042BB140E70035805D /* RxSuppComposeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,6 +162,7 @@
 			children = (
 				BE3E32742BAC3FCF00E62FCD /* RxHomeViewController.swift */,
 				BEC96A062BB1505D0035805D /* RxSuppComposeViewController.swift */,
+				BE3E326E2BA8014E00E62FCD /* ViewModelBindableType.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -214,10 +170,18 @@
 		D30B1CD6FA523EA77C792F25 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */,
-				1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */,
+				F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */,
+				CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E648DE22127691C65FB1BB01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E44251027AF28059549D3995 /* Pods_NutriNotify.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,11 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE9B8AAB2B95BC2100323771 /* Build configuration list for PBXNativeTarget "NutriNotify" */;
 			buildPhases = (
-				D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */,
+				45AAC33A0A7D82B12FE90DE6 /* [CP] Check Pods Manifest.lock */,
 				BE9B8A902B95BC1F00323771 /* Sources */,
 				BE9B8A912B95BC1F00323771 /* Frameworks */,
 				BE9B8A922B95BC1F00323771 /* Resources */,
-				54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */,
+				BCCA56C98C18F484E0F7580F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -282,31 +246,13 @@
 			files = (
 				BE9B8AA72B95BC2100323771 /* LaunchScreen.storyboard in Resources */,
 				BE9B8AA42B95BC2100323771 /* Assets.xcassets in Resources */,
-				BE9B8A9F2B95BC1F00323771 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54114AD9B730CC420158358A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D331038434A44BC41D75DB66 /* [CP] Check Pods Manifest.lock */ = {
+		45AAC33A0A7D82B12FE90DE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,6 +274,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BCCA56C98C18F484E0F7580F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriNotify/Pods-NutriNotify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -335,26 +298,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3E32712BABF9F800E62FCD /* HomeViewModel.swift in Sources */,
 				BEC96A072BB1505D0035805D /* RxSuppComposeViewController.swift in Sources */,
 				BE3E32612B99971100E62FCD /* DataManager+SuppAlert.swift in Sources */,
 				BE3E326D2BA41BB400E62FCD /* AlertCheckBoxCell.swift in Sources */,
 				BE3E32752BAC3FCF00E62FCD /* RxHomeViewController.swift in Sources */,
 				BE3E32572B99958D00E62FCD /* DataManager+Supplement.swift in Sources */,
-				BE3E32692B9EE69B00E62FCD /* SuppComposeViewModel.swift in Sources */,
 				BE9B8A982B95BC1F00323771 /* AppDelegate.swift in Sources */,
 				BE3E325E2B99960D00E62FCD /* SupplementEntity+CoreDataClass.swift in Sources */,
 				BE3E326B2BA4199800E62FCD /* HomeTableViewCell.swift in Sources */,
 				BE3E32392B98509500E62FCD /* DataManager.swift in Sources */,
 				BE3E32672B9EBEC300E62FCD /* DatePickerCell.swift in Sources */,
+				BE3E2DB82BEE1BFC00547EAB /* Supplement.swift in Sources */,
 				BE9B8A9A2B95BC1F00323771 /* SceneDelegate.swift in Sources */,
+				BE3E2DBF2BFC80D900547EAB /* weekdayHeaderView.swift in Sources */,
 				BE3E32732BAC024600E62FCD /* Date+Extensions.swift in Sources */,
-				BEC96A052BB140E70035805D /* Rx+SuppComposeViewModel.swift in Sources */,
-				BEC96A032BAD5BB40035805D /* RxDataSourceViewModel.swift in Sources */,
-				BE3E32652B9E02A600E62FCD /* SuppComposeViewController.swift in Sources */,
-				BE3E32632B9B0DCC00E62FCD /* HomeViewController.swift in Sources */,
+				BEC96A052BB140E70035805D /* RxSuppComposeViewModel.swift in Sources */,
+				BEC96A032BAD5BB40035805D /* RxHomeViewModel.swift in Sources */,
 				BE9B8AA22B95BC1F00323771 /* NutriNotify.xcdatamodeld in Sources */,
-				BE3E32452B98998C00E62FCD /* Model.swift in Sources */,
 				BE3E326F2BA8014E00E62FCD /* ViewModelBindableType.swift in Sources */,
 				BE3E325C2B99960D00E62FCD /* SuppAlertEntity+CoreDataClass.swift in Sources */,
 			);
@@ -363,14 +323,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BE9B8A9D2B95BC1F00323771 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE9B8A9E2B95BC1F00323771 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BE9B8AA52B95BC2100323771 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -432,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -486,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -498,10 +450,11 @@
 		};
 		BE9B8AAC2B95BC2100323771 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1853A72D86484F00758A7908 /* Pods-NutriNotify.debug.xcconfig */;
+			baseConfigurationReference = F1A39A791D7B46B354D155E2 /* Pods-NutriNotify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VQ9DRSPK5;
@@ -509,9 +462,9 @@
 				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -520,18 +473,24 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dw0124.NutriNotify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		BE9B8AAD2B95BC2100323771 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1419D33C3A8143CE92ABA437 /* Pods-NutriNotify.release.xcconfig */;
+			baseConfigurationReference = CFE23D18558E3118292F21CC /* Pods-NutriNotify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5VQ9DRSPK5;
@@ -539,9 +498,9 @@
 				INFOPLIST_FILE = NutriNotify/predefined/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -550,9 +509,14 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dw0124.NutriNotify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

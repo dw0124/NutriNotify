@@ -4,11 +4,12 @@
         <attribute name="alertTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isTaken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="supplement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Supplement" inverseName="suppAlert" inverseEntity="Supplement"/>
+        <attribute name="weekday" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <relationship name="supplement" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Supplement" inverseName="suppAlerts" inverseEntity="Supplement"/>
     </entity>
     <entity name="Supplement" representedClassName="SupplementEntity" syncable="YES" codeGenerationType="category">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="suppAlert" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SuppAlert" inverseName="supplement" inverseEntity="SuppAlert"/>
+        <relationship name="suppAlerts" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SuppAlert" inverseName="supplement" inverseEntity="SuppAlert"/>
     </entity>
 </model>

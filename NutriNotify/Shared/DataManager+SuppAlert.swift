@@ -17,7 +17,7 @@ extension DataManager {
             newSuppAlert.alertTime = alertTime
             newSuppAlert.isTaken = isTaken
             
-            supplement.addToSuppAlert(newSuppAlert)
+            supplement.addToSuppAlerts(newSuppAlert)
             
             self.saveMainContext()
             
@@ -25,15 +25,16 @@ extension DataManager {
         }
     }
     
-    func createSuppAlert2(for supplement: SupplementEntity, alertTime: Date, isTaken: Bool, completion: ((SupplementEntity, SuppAlertEntity) -> ())? = nil) {
+    func createSuppAlert2(for supplement: SupplementEntity, weekday: [Int] ,alertTime: Date, isTaken: Bool, completion: ((SupplementEntity, SuppAlertEntity) -> ())? = nil) {
         mainContext.perform {
             let newSuppAlert = SuppAlertEntity(context: self.mainContext)
             
             newSuppAlert.id = UUID()
             newSuppAlert.alertTime = alertTime
+            newSuppAlert.weekday = weekday
             newSuppAlert.isTaken = isTaken
             
-            supplement.addToSuppAlert(newSuppAlert)
+            supplement.addToSuppAlerts(newSuppAlert)
             
             self.saveMainContext()
             

@@ -5,29 +5,56 @@
 //  Created by 김두원 on 2024/03/15.
 //
 
-//
-//  FeedTableViewCell.swift
-//  MyDiary
-//
-//  Created by 김두원 on 2023/11/09.
-//
-
 import UIKit
 import SnapKit
+import RxSwift
+import RxRelay
 
 class HomeTableViewCell: UITableViewCell {
     
     static let identifier = "HomeTableViewCell"
     
-    var collectionViewHeight: CGFloat = 100
+    var disposeBag = DisposeBag()
     
-    var suppAlertList: [SuppAlertEntity] = []
+    var suppAlerts = PublishRelay<[SuppAlert]>()
     
     var stackView = UIStackView()
     
     let labelInset: CGFloat = 24
     
+    var collectionViewHeight: CGFloat = 100
+    
+    var deleteDiaryItemHandelr: (() -> Void)?
+    var editDiaryItemHandelr: (() -> Void)?
+    
     var titleLabel = UILabel()
+    
+    lazy var optionsButton: UIButton = {
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        let edit = UIAction(
+            title: "수정",
+            image: UIImage(systemName: "square.and.pencil"),
+            handler: { [weak self] _ in
+                guard let editDiaryItemHandelr = self?.editDiaryItemHandelr else { return }
+                editDiaryItemHandelr()
+            }
+        )
+        let delete = UIAction(
+            title: "삭제", image: UIImage(systemName: "trash"),
+            attributes: .destructive,
+            handler: { [weak self] _ in
+                guard let deleteDiaryItemHandelr = self?.deleteDiaryItemHandelr else { return }
+                deleteDiaryItemHandelr()
+            }
+        )
+        let buttonMenu = UIMenu(children: [edit, delete])
+        rightButton.menu = buttonMenu
+        rightButton.tintColor = .black
+        rightButton.showsMenuAsPrimaryAction = true
+        return rightButton
+    }()
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -50,6 +77,7 @@ class HomeTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupCell()
+        binding()
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +87,7 @@ class HomeTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundColor = #colorLiteral(red: 0.9239165187, green: 0.9213962555, blue: 0.9468390346, alpha: 1)
+        backgroundColor = .white
         contentView.backgroundColor = .white
     }
     
@@ -69,11 +97,6 @@ class HomeTableViewCell: UITableViewCell {
     
     private func setupCell() {
         selectionStyle = .none
-        
-        // CollectionView 설정
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.prefetchDataSource = self
         
         // stackView 설정
         stackView.axis = .vertical
@@ -92,20 +115,32 @@ class HomeTableViewCell: UITableViewCell {
         }()
         
         // titleLabel의 leading을 조절하기 위한 빈 뷰
-        let emptyView = UIView()
-        emptyView.backgroundColor = .clear
+        let leftEmptyView = UIView()
+        leftEmptyView.backgroundColor = .clear
+        
+        // rightButton의 trailing을 조절하기 위한 빈 뷰
+        let rightEmptyView = UIView()
+        rightEmptyView.backgroundColor = .clear
         
         let innerStackView = UIStackView()
         innerStackView.axis = .horizontal
         innerStackView.spacing = 8
         
-        innerStackView.addArrangedSubview(emptyView)
+        innerStackView.addArrangedSubview(leftEmptyView)
         innerStackView.addArrangedSubview(titleLabel)
+        innerStackView.addArrangedSubview(optionsButton)
+        innerStackView.addArrangedSubview(rightEmptyView)
         
         stackView.addArrangedSubview(innerStackView)
         
         // titleLabel의 leading을 조절 / 뷰의 길이 == titleLabel의 leading
-        emptyView.snp.makeConstraints {
+        leftEmptyView.snp.makeConstraints {
+            $0.width.equalTo(12) // 필요에 따라 조정
+        }
+        
+        
+        // rightButton의 trailing을 조절 / 뷰의 길이 == rightButton의 trailing
+        rightEmptyView.snp.makeConstraints {
             $0.width.equalTo(12) // 필요에 따라 조정
         }
         
@@ -126,15 +161,22 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
 
-    
+    private func binding() {
+        suppAlerts
+            .bind(to: collectionView.rx.items(cellIdentifier: AlertCheckBoxCell.identifier, cellType: AlertCheckBoxCell.self)) { (row, element, cell) in
+                cell.configure(with: element)
+            }
+            .disposed(by: disposeBag)
+    }
     
     // configure
-    func configure(_ supplement: SupplementEntity) {
-        if let alertList = supplement.suppAlert?.array as? [SuppAlertEntity] {
-            self.suppAlertList = alertList
-            let lineSpacing: CGFloat = CGFloat(suppAlertList.count - 1) / 3 * 10
-            self.collectionViewHeight = CGFloat((suppAlertList.count + 2) / 3) * 100 + lineSpacing
-        }
+    func configure(_ supplement: Supplement) {
+        let alertList = supplement.suppAlerts
+        
+        self.suppAlerts.accept(alertList)
+        
+        let lineSpacing: CGFloat = CGFloat(alertList.count - 1) / 3 * 10
+        self.collectionViewHeight = CGFloat((alertList.count + 2) / 3) * 100 + lineSpacing
         
         titleLabel.text = supplement.name
         
@@ -142,36 +184,18 @@ class HomeTableViewCell: UITableViewCell {
             $0.height.equalTo(collectionViewHeight).priority(.high)
         }
         
-        collectionView.reloadData()
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension HomeTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return suppAlertList.count
+        collectionView.isHidden = false
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlertCheckBoxCell.identifier, for: indexPath) as? AlertCheckBoxCell else { return UICollectionViewCell() }
+    func configure2(_ supplement: Supplement, all: Bool) {
+        titleLabel.text = supplement.name
         
-        cell.configure(with: suppAlertList[indexPath.item])
+        self.collectionViewHeight = 0
         
-        return cell
-    }
-    
-}
-
-// MARK: - UICollectionViewDataSourcePrefetching
-extension HomeTableViewCell: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print(indexPaths)
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension HomeTableViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print()
+        collectionView.snp.updateConstraints {
+            $0.height.equalTo(collectionViewHeight).priority(.high)
+        }
+        
+        collectionView.isHidden = true
     }
 }

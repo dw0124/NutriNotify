@@ -63,7 +63,7 @@ extension DataManager {
     
     // Supplement와 연관된 SuppAlert를 삭제
     func deleteSuppAlerts(for supplement: SupplementEntity) {
-        guard let suppAlerts = supplement.suppAlert?.array as? [SuppAlertEntity] else {
+        guard let suppAlerts = supplement.suppAlerts?.array as? [SuppAlertEntity] else {
             return
         }
         let center = UNUserNotificationCenter.current()
@@ -71,8 +71,13 @@ extension DataManager {
         for suppAlert in suppAlerts {
             mainContext.delete(suppAlert)
             
-            // local notification 삭제
-            center.removePendingNotificationRequests(withIdentifiers: [suppAlert.id?.uuidString ?? "localNotification"])
+            // SuppAlert에 대해 예약된 모든 알림을 삭제
+            if let id = suppAlert.id?.uuidString {
+                for weekday in 1...7 {
+                    let idWithWeekday = "\(id)_\(weekday)"
+                    center.removePendingNotificationRequests(withIdentifiers: [idWithWeekday])
+                }
+            }
         }
         
         saveMainContext()
@@ -88,6 +93,7 @@ extension DataManager {
     }
 }
 
+// MARK: - RxSwift
 import RxSwift
 
 // Rx+DataManager
@@ -107,12 +113,54 @@ extension DataManager {
         }
     }
     
+    func rxFetchSupplement() -> Observable<[SupplementEntity]> {
+        return Observable.create { observer in
+            
+            var list: [SupplementEntity] = []
+            
+            let request: NSFetchRequest<SupplementEntity> = SupplementEntity.fetchRequest()
+            
+            // 이름순으로 정렬
+            let sortByName = NSSortDescriptor(key: #keyPath(SupplementEntity.name), ascending: true)
+            request.sortDescriptors = [sortByName]
+            
+            do {
+                list = try self.mainContext.fetch(request)
+                observer.onNext(list)
+                observer.onCompleted()
+            } catch {
+                print(error)
+                observer.onError(error)
+            }
+            return Disposables.create()
+        }
+    }
+    
     func rxUpdateSupplement(supplement: SupplementEntity, name: String, desc: String) -> Observable<SupplementEntity> {
         return Observable.create { observer in
             supplement.name = name
             supplement.desc = desc
             
             self.saveMainContext()
+            
+            observer.onNext(supplement)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
+    // 알림 시간으로 정렬
+    func sortSuppAlerts(_ supplement: SupplementEntity) -> Observable<SupplementEntity> {
+        return Observable.create { observer in
+            let sortByAlertTime = NSSortDescriptor(key: #keyPath(SuppAlertEntity.alertTime), ascending: true)
+            if let sortedByAlert = supplement.suppAlerts?.sortedArray(using: [sortByAlertTime]) {
+                supplement.suppAlerts = NSOrderedSet(array: sortedByAlert)
+            }
+            self.saveMainContext()
+            
+            observer.onNext(supplement)
+            observer.onCompleted()
             
             return Disposables.create()
         }
